@@ -1,0 +1,7 @@
+{
+  "name": "Kiosquito",
+  "description": "Punto de venta táctil, control de inventario y libreta de fiao para bodegas y comercios de barrio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

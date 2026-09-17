@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><title>Kiosquito</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed": "#07006c", "outline-variant": "#bdcabc", "surface-container": "#e7eeff", "surface": "#f9f9ff", "error-container": "#ffdad6", "on-surface": "#111c2d", "tertiary-fixed-dim": "#c0c1ff", "primary-fixed-dim": "#64dd91", "secondary": "#855300", "secondary-container": "#fea619", "surface-container-highest": "#d8e3fb", "on-primary": "#ffffff", "tertiary-fixed": "#e1e0ff", "on-tertiary": "#ffffff", "on-error": "#ffffff", "on-background": "#111c2d", "secondary-fixed": "#ffddb8", "on-primary-container": "#f6fff4", "on-secondary-container": "#684000", "tertiary-container": "#6063ee", "surface-bright": "#f9f9ff", "primary": "#006a39", "on-surface-variant": "#3e4a3f", "on-secondary-fixed-variant": "#653e00", "surface-container-low": "#f0f3ff", "on-tertiary-container": "#fffbff", "primary-fixed": "#82faab", "outline": "#6d7a6f", "on-secondary-fixed": "#2a1700", "inverse-primary": "#64dd91", "on-primary-fixed-variant": "#00522b", "on-error-container": "#93000a", "inverse-surface": "#263143", "secondary-fixed-dim": "#ffb95f", "surface-dim": "#cfdaf2", "on-primary-fixed": "#00210e", "background": "#f9f9ff", "tertiary": "#4648d4", "error": "#ba1a1a", "surface-tint": "#006d3a", "on-secondary": "#ffffff", "surface-container-high": "#dee8ff", "surface-variant": "#d8e3fb", "on-tertiary-fixed-variant": "#2f2ebe", "primary-container": "#008649", "inverse-on-surface": "#ecf1ff", "surface-container-lowest": "#ffffff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "margin-mobile": "1rem", "space-md": "0.75rem", "gutter": "1rem", "space-lg": "1.25rem", "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin": "1.25rem", "space-xl": "1.75rem" }, fontFamily: { "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "currency-display": ["Plus Jakarta Sans"], "currency-sub": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, fontSize: { "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "currency-display": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "currency-sub": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-28 px-gutter-mobile flex flex-col justify-between py-space-sm"><div class="flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="Kiosquito Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPt0eh_DSpOoETGT6mUCkuh58-PrHlBUupXbuM5t6BcEQgXzJzBX2r-EJFicW6BJXXOrCoa9_DaRo075CEXC_dr7cMqzZT1vV-6DTJZ7eBztG_ccfEade3vg4KofLIk3MxqtaqVL5rJ-kg0g7octyN7wrGuFoV0rVVOg50CZYyVd8yvjKGkIPIm-Qlvavmr6mcDliu3YNhbXFYTs6oL4hmkcLIkaER2WPHnrZRHlMImajLG0k3CNouUg"/><div class="flex flex-col min-w-0"><span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold leading-none">Kiosquito</span><h1 class="font-headline-sm text-headline-sm text-on-surface truncate font-bold leading-tight">Bodega San Antonio</h1></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1 bg-surface-container px-2 py-1 rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-[14px] text-primary">print</span><span class="font-label-sm text-label-sm hidden sm:inline">Impresora</span><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="flex items-center justify-between gap-space-sm pt-1"><div class="inline-flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed px-2.5 py-1 rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><span class="material-symbols-outlined text-[14px] text-secondary">currency_exchange</span><span class="font-label-md text-label-md font-bold">Tasa: 1 USD = 36.50 Bs</span><button aria-label="Editar tasa" class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-secondary/10"><span class="material-symbols-outlined text-[13px] text-secondary">edit</span></button></div><div class="font-label-md text-label-md font-bold text-on-surface-variant tracking-wide uppercase">Clientes Confiables</div></div></div></header><main class="flex flex-col relative w-full pt-28 pb-24 px-gutter-mobile bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Toast Notification System -->
+<div class="fixed top-28 left-1/2 -translate-x-1/2 z-50 px-space-md py-space-sm rounded-full bg-inverse-surface text-inverse-on-surface shadow-xl flex items-center gap-space-sm opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-2" id="toastNotification">
+<span class="material-symbols-outlined text-primary-fixed text-[18px]" id="toastIcon">check_circle</span>
+<span class="font-label-md text-label-md" id="toastMessage">Acción realizada exitosamente</span>
+</div>
+<!-- SECTION: MAIN PROFILE (Default view) -->
+<section class="flex flex-col w-full gap-space-lg transition-opacity duration-200" id="section-main">
+<!-- Hero Profile Card (Emerald warm Latin-American retail vibe) -->
+<div class="relative w-full rounded-3xl bg-gradient-to-br from-primary-container via-primary to-primary-container p-space-lg text-on-primary shadow-md overflow-hidden">
+<!-- Background pattern decor -->
+<div class="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
+<div class="absolute right-4 top-4 text-white/10 select-none pointer-events-none">
+<span class="material-symbols-outlined text-[96px] leading-none">storefront</span>
+</div>
+<div class="relative z-10 flex flex-col items-center sm:flex-row sm:items-center gap-space-md text-center sm:text-left">
+<!-- Circular Avatar with camera quick-action -->
+<div class="relative flex-shrink-0">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest p-1 shadow-md">
+<img class="w-full h-full rounded-full object-cover" data-alt="A portrait of Marco Valderrama, a warm and friendly Latin American grocery store owner wearing a tidy dark apron in a bright neighborhood bodega in Caracas, realistic soft lighting, confident and cheerful." id="avatarImageDisplay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw867L85QpIkuAslsAGIRJZ5xkGpo9zlpFlCm2xdKwFI655Zwr5jW7hFNCWwNw82RSnD4lKng3tfz8nSPdcf7YpeDmaZm4jEb3o53VjRvL11gTRvTJEY_QVKLIyO1fZWlGweeAg905z2frhBoIYMe_mG8BsTnaj59AdkGD3EzFwx9kqwzhwQKXB7fwMQ8cL_5zj9dDCHDw3J2vwg13mkt4BAdbinqos6vL3xrqseG4lBbrsREPaWN3ng"/>
+</div>
+<label class="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-transform" for="avatarFileInput" title="Cambiar foto">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+<input accept="image/*" class="hidden" id="avatarFileInput" type="file"/>
+</label>
+</div>
+<!-- Store Owner Details -->
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-center sm:justify-start gap-space-xs mb-0.5">
+<h2 class="font-headline-sm text-headline-sm text-on-primary font-bold truncate">Marco Valderrama</h2>
+<span class="material-symbols-outlined text-[18px] text-primary-fixed" title="Verificado">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary/90 font-medium">Dueño / Administrador</p>
+<p class="font-label-sm text-label-sm text-primary-fixed flex items-center justify-center sm:justify-start gap-1 mt-1">
+<span class="material-symbols-outlined text-[13px]">location_on</span>
+            Bodega San Antonio • El Valle
+          </p>
+<!-- Supabase Sync Badge -->
+<div class="mt-2.5 inline-flex items-center gap-1.5 self-center sm:self-start bg-black/20 backdrop-blur-sm px-2.5 py-1 rounded-full text-on-primary">
+<span class="w-2 h-2 rounded-full bg-primary-fixed animate-ping"></span>
+<span class="font-label-sm text-label-sm">Kiosquito Cloud &amp; Supabase al día</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 1: Configuration Modules -->
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-sm shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold px-space-sm py-1.5">Mi Negocio &amp; Cuenta</span>
+<!-- Item: Bodega Profile -->
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low active:scale-[0.99] transition-all text-left" onclick="navigateToSection('company')" type="button">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Perfil de la Bodega</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">RIF, dirección, logo y sello fiscal</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant flex-shrink-0">
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded-full font-bold">J-40819284-1</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</button>
+<!-- Item: Account -->
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low active:scale-[0.99] transition-all text-left mt-1" onclick="navigateToSection('account')" type="button">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-tertiary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">manage_accounts</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Configuración de Cuenta</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Correo y cambio de contraseña</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">chevron_right</span>
+</button>
+<!-- Item: Privacy & Security -->
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low active:scale-[0.99] transition-all text-left mt-1" onclick="navigateToSection('security')" type="button">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-secondary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">security</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Privacidad y Seguridad</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Sesiones activas y claves de acceso</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">chevron_right</span>
+</button>
+<!-- Item: Appearance -->
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low active:scale-[0.99] transition-all text-left mt-1" onclick="navigateToSection('appearance')" type="button">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary-container flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">palette</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Apariencia y Tema</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Modo Oscuro, idioma e interfaz</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant flex-shrink-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="currentThemeLabel">Claro • ES</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</button>
+<!-- Item: Notifications -->
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low active:scale-[0.99] transition-all text-left mt-1" onclick="navigateToSection('notifications')" type="button">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-tertiary-container flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Notificaciones y Alertas</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Beep de caja, alertas de Fiao y ventas</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">chevron_right</span>
+</button>
+</div>
+<!-- Group 2: Support & Legal -->
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-sm shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold px-space-sm py-1.5">Soporte y Garantías</span>
+<!-- Item: Help Center -->
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low active:scale-[0.99] transition-all text-left" onclick="navigateToSection('help')" type="button">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Centro de Ayuda &amp; Asistencia</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Guía rápida de cobro y WhatsApp directo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">chevron_right</span>
+</button>
+<!-- Item: Terms & Legal -->
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low active:scale-[0.99] transition-all text-left mt-1" onclick="navigateToSection('legal')" type="button">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Términos y Condiciones</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Protección de datos fiscales y locales</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">chevron_right</span>
+</button>
+</div>
+<!-- Logout Action -->
+<div class="flex flex-col items-center pt-2">
+<button class="w-full flex items-center justify-center gap-space-xs py-3 px-space-md rounded-2xl bg-error-container text-on-error-container font-label-lg text-label-lg hover:opacity-95 active:scale-98 transition-all shadow-sm" onclick="handleLogout()" type="button">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span>Cerrar Sesión en esta Caja</span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70 mt-space-sm">Kiosquito POS v2.4.1 (Build 2025-CARACAS)</span>
+</div>
+</section>
+<!-- SECTION: COMPANY / BODEGA PROFILE -->
+<section class="hidden flex-col w-full gap-space-md transition-opacity duration-200" id="section-company">
+<!-- Header Bar -->
+<div class="flex items-center justify-between py-1 bg-surface sticky top-28 z-20">
+<button class="inline-flex items-center gap-1 text-primary font-label-lg text-label-lg py-1 px-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="navigateToSection('main')" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Volver</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Perfil de la Bodega</span>
+<div class="w-12"></div>
+</div>
+<!-- Company Form Container -->
+<form class="flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-3xl shadow-sm" id="companyForm" onsubmit="event.preventDefault(); saveCompanyData();">
+<!-- Visual Logos & Digital Stamp -->
+<div class="flex flex-col sm:flex-row items-center gap-space-md p-space-md bg-surface-container-low rounded-2xl">
+<div class="w-20 h-20 rounded-2xl bg-surface-container-lowest p-2 shadow-sm flex items-center justify-center flex-shrink-0">
+<img class="w-full h-full object-contain" data-alt="A stylized clean vector logo for Bodega San Antonio grocery store featuring an antique grocery scale in warm emerald green and amber gold tones." id="companyLogoDisplay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArRhd6_WQO86wv8ZP35I0I_5Eb-_EjcLi-SIigksGOqmmYhQ8D92ByWtop7lvc1K0wYRo6fMbI5LHNPWE0tPs13xbhL6bX-dNoefAY4wqCxjOHC5Pites5Q2Jzdw5GoS2wASFqBso3hN6p5b6D75Cb_liYN4_3ahBTCw-20bzeQlqTRnPv8A78IEYc2ZIMqoA_-06tyKFSwDrZlokBg2MRrgmfi7MJV5cTEm3yXbnILiOFjRfBtAplUQ"/>
+</div>
+<div class="flex flex-col text-center sm:text-left flex-1">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Logotipo del Establecimiento</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Aparece en el encabezado de recibos impresos y tickets digitales.</span>
+<div class="mt-2 flex gap-2 justify-center sm:justify-start">
+<label class="cursor-pointer inline-flex items-center gap-1 font-label-md text-label-md bg-secondary-fixed text-on-secondary-fixed px-3 py-1.5 rounded-full hover:bg-secondary-fixed-dim transition-colors shadow-sm" for="companyLogoInput">
+<span class="material-symbols-outlined text-[16px]">upload</span>
+<span>Cambiar Logo</span>
+<input accept="image/*" class="hidden" id="companyLogoInput" type="file"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Fields: Fiscal info -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Identificador Fiscal (RIF)</label>
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none uppercase font-bold" id="taxIdInput" required="" type="text" value="J-40819284-1"/>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Razón Social Registrada</label>
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<span class="material-symbols-outlined text-primary text-[20px]">domain</span>
+<input class="w-full bg-transparent font-body-lg text-body-lg text-on-surface font-medium focus:outline-none" id="businessNameInput" required="" type="text" value="Inversiones &amp; Bodega San Antonio C.A."/>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Titular o Representante Legal</label>
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<span class="material-symbols-outlined text-primary text-[20px]">person</span>
+<input class="w-full bg-transparent font-body-lg text-body-lg text-on-surface focus:outline-none" required="" type="text" value="Marco V. Valderrama"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Cédula / Documento</label>
+<div class="bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none font-bold" type="text" value="V-18.492.103"/>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Nacionalidad</label>
+<div class="bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" type="text" value="Venezolana"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Dirección Comercial (Física)</label>
+<div class="bg-surface-container-low px-space-md py-2 rounded-xl">
+<textarea class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none resize-none" rows="2">Calle Principal #14, Sector El Valle, Caracas, Venezuela</textarea>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Ciudad</label>
+<div class="bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" type="text" value="Caracas"/>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Estado / Región</label>
+<div class="bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" type="text" value="Distrito Capital"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Teléfono de Caja / Pago Móvil</label>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<span class="material-symbols-outlined text-primary text-[18px]">phone</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" type="tel" value="+58 412 555-0199"/>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Correo de la Empresa</label>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<span class="material-symbols-outlined text-primary text-[18px]">mail</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" type="email" value="bodegasanantonio@kiosquito.app"/>
+</div>
+</div>
+</div>
+<!-- Sello / Firma Digital -->
+<div class="flex flex-col gap-space-xs pt-1">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Firma Digital &amp; Sello Fiscal para Recibos</label>
+<div class="flex items-center justify-between p-space-md bg-surface-container-low rounded-2xl">
+<div class="flex items-center gap-space-md">
+<div class="w-24 h-12 bg-surface-container-lowest rounded-xl flex items-center justify-center p-1">
+<svg class="w-full h-full text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewbox="0 0 100 40">
+<path d="M10,25 C25,5 30,35 45,15 C60,-5 70,30 90,20 M40,25 L75,25"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Firma validada</span>
+<span class="font-label-sm text-label-sm text-primary">Sello digital sincronizado</span>
+</div>
+</div>
+<button class="font-label-md text-label-md text-primary bg-primary-fixed/40 px-3 py-1.5 rounded-full hover:bg-primary-fixed transition-colors" onclick="showToast('Modo captura de firma activado')" type="button">
+            Actualizar
+          </button>
+</div>
+</div>
+<!-- Save Button with visual trigger -->
+<button class="w-full min-h-[52px] bg-primary text-on-primary rounded-2xl font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow-md hover:bg-primary-container active:scale-[0.98] transition-all mt-2" type="submit">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>Guardar Información de la Bodega</span>
+</button>
+</form>
+</section>
+<!-- SECTION: ACCOUNT & SECURITY -->
+<section class="hidden flex-col w-full gap-space-md transition-opacity duration-200" id="section-account">
+<div class="flex items-center justify-between py-1 bg-surface sticky top-28 z-20">
+<button class="inline-flex items-center gap-1 text-primary font-label-lg text-label-lg py-1 px-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="navigateToSection('main')" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Volver</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Cuenta &amp; Acceso</span>
+<div class="w-12"></div>
+</div>
+<!-- Email block -->
+<div class="flex flex-col gap-space-sm bg-surface-container-lowest p-space-lg rounded-3xl shadow-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Correo de Acceso Principal</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Este correo recibe copias de cierre de caja (*Z*) y reportes de inventario diario.</p>
+<div class="flex items-center justify-between p-space-md bg-surface-container-low rounded-2xl">
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-bold truncate">bodegasanantonio@kiosquito.app</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Cuenta verificada
+          </span>
+</div>
+<button class="font-label-md text-label-md text-tertiary bg-tertiary-fixed px-3 py-1.5 rounded-full hover:bg-tertiary-fixed-dim transition-colors flex-shrink-0" onclick="showToast('Enlace de verificación enviado al correo')" type="button">
+          Cambiar
+        </button>
+</div>
+</div>
+<!-- Password Change block -->
+<form class="flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-3xl shadow-sm" onsubmit="event.preventDefault(); updatePassword();">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Actualizar Contraseña</h3>
+</div>
+<!-- Current Password -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Contraseña Actual de Caja</label>
+<div class="flex items-center justify-between bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="pwd-current" placeholder="••••••••" required="" type="password"/>
+<button class="text-on-surface-variant hover:text-on-surface p-1" onclick="togglePasswordVisibility('pwd-current', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- New Password -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Nueva Contraseña</label>
+<div class="flex items-center justify-between bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="pwd-new" minlength="8" placeholder="Mínimo 8 caracteres" required="" type="password"/>
+<button class="text-on-surface-variant hover:text-on-surface p-1" onclick="togglePasswordVisibility('pwd-new', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Confirmar Nueva Contraseña</label>
+<div class="flex items-center justify-between bg-surface-container-low px-space-md py-2.5 rounded-xl">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="pwd-confirm" minlength="8" placeholder="Repite tu nueva contraseña" required="" type="password"/>
+<button class="text-on-surface-variant hover:text-on-surface p-1" onclick="togglePasswordVisibility('pwd-confirm', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<button class="w-full min-h-[50px] bg-primary text-on-primary rounded-2xl font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow-md hover:bg-primary-container active:scale-[0.98] transition-all" type="submit">
+<span class="material-symbols-outlined text-[18px]">key</span>
+<span>Actualizar Contraseña de Acceso</span>
+</button>
+</form>
+</section>
+<!-- SECTION: SECURITY & PRIVACY -->
+<section class="hidden flex-col w-full gap-space-md transition-opacity duration-200" id="section-security">
+<div class="flex items-center justify-between py-1 bg-surface sticky top-28 z-20">
+<button class="inline-flex items-center gap-1 text-primary font-label-lg text-label-lg py-1 px-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="navigateToSection('main')" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Volver</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Privacidad y Seguridad</span>
+<div class="w-12"></div>
+</div>
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-md shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold px-space-sm py-1.5">Control de Autenticación</span>
+<!-- Link to account password -->
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low transition-colors text-left" onclick="navigateToSection('account')" type="button">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">password</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Cambiar Contraseña</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Último cambio hace 3 semanas</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+<!-- Biometric (Future) -->
+<div class="w-full flex items-center justify-between p-space-sm rounded-2xl opacity-75">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">fingerprint</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Bloqueo Biométrico (Huella / FaceID)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Protección rápida para abrir gaveta de dinero</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full font-bold">Próximamente</span>
+</div>
+<!-- 2FA (Future) -->
+<div class="w-full flex items-center justify-between p-space-sm rounded-2xl opacity-75 mt-1">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">phonelink_lock</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Verificación en 2 Pasos (2FA)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Código SMS o Google Authenticator</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full font-bold">Próximamente</span>
+</div>
+</div>
+<!-- Active sessions -->
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-md shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold px-space-sm py-1.5">Dispositivos y Cajas</span>
+<div class="flex items-center justify-between p-space-sm rounded-2xl bg-surface-container-low">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-[22px]">smartphone</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Teléfono de Mostrador</span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Caja Principal • Caracas (Esta sesión)</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-2 py-1 rounded-full font-bold">Activo</span>
+</div>
+</div>
+</section>
+<!-- SECTION: APPEARANCE & THEME -->
+<section class="hidden flex-col w-full gap-space-md transition-opacity duration-200" id="section-appearance">
+<div class="flex items-center justify-between py-1 bg-surface sticky top-28 z-20">
+<button class="inline-flex items-center gap-1 text-primary font-label-lg text-label-lg py-1 px-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="navigateToSection('main')" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Volver</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Apariencia y Tema</span>
+<div class="w-12"></div>
+</div>
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-md shadow-sm gap-space-md">
+<!-- Real Dark Mode Switch -->
+<div class="flex items-center justify-between p-space-sm rounded-2xl bg-surface-container-low">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" id="darkIcon">light_mode</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Modo Oscuro (Para turnos nocturnos)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Atenúa la pantalla para ahorrar batería y cuidar tu vista</span>
+</div>
+</div>
+<button aria-pressed="false" class="relative inline-flex h-7 w-12 flex-shrink-0 cursor-pointer rounded-full bg-outline-variant transition-colors duration-200 ease-in-out" id="darkModeToggle" onclick="toggleDarkMode()" type="button">
+<span class="pointer-events-none inline-block h-6 w-6 transform rounded-full bg-surface shadow ring-0 transition duration-200 ease-in-out translate-x-0.5 mt-0.5" id="darkModeKnob"></span>
+</button>
+</div>
+<!-- Language Selector -->
+<div class="flex flex-col gap-space-xs p-space-sm">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Idioma del Sistema POS</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Afecta los botones de cobro rápido, inventario y recibos impresos.</span>
+<div class="grid grid-cols-2 gap-space-sm mt-2">
+<!-- ES -->
+<button class="flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-primary text-on-primary font-label-lg text-label-lg shadow-sm transition-all" id="lang-btn-es" onclick="setLanguage('es')" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>Español (ES)</span>
+</button>
+<!-- EN -->
+<button class="flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-surface-container-low text-on-surface font-label-lg text-label-lg hover:bg-surface-container transition-all" id="lang-btn-en" onclick="setLanguage('en')" type="button">
+<span class="material-symbols-outlined text-[18px] opacity-0">check</span>
+<span>English (EN)</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: NOTIFICATIONS & SOUND -->
+<section class="hidden flex-col w-full gap-space-md transition-opacity duration-200" id="section-notifications">
+<div class="flex items-center justify-between py-1 bg-surface sticky top-28 z-20">
+<button class="inline-flex items-center gap-1 text-primary font-label-lg text-label-lg py-1 px-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="navigateToSection('main')" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Volver</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Notificaciones y Sonidos</span>
+<div class="w-12"></div>
+</div>
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-md shadow-sm gap-space-md">
+<!-- General Notifications Toggle -->
+<div class="flex items-center justify-between p-space-sm rounded-2xl bg-surface-container-low">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">campaign</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Alertas de Ventas &amp; Pagos</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Avisos instantáneos de transferencias o Pago Móvil</span>
+</div>
+</div>
+<button aria-pressed="true" class="relative inline-flex h-7 w-12 flex-shrink-0 cursor-pointer rounded-full bg-primary transition-colors duration-200" onclick="toggleSimpleSwitch(this)" type="button">
+<span class="pointer-events-none inline-block h-6 w-6 transform rounded-full bg-surface shadow ring-0 transition duration-200 translate-x-5 mt-0.5"></span>
+</button>
+</div>
+<!-- Cash Register Beep Toggle -->
+<div class="flex items-center justify-between p-space-sm rounded-2xl bg-surface-container-low">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Sonido de Escaneo y Caja</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Beep de confirmación con lector de código de barra</span>
+</div>
+</div>
+<button aria-pressed="true" class="relative inline-flex h-7 w-12 flex-shrink-0 cursor-pointer rounded-full bg-primary transition-colors duration-200" onclick="toggleSimpleSwitch(this)" type="button">
+<span class="pointer-events-none inline-block h-6 w-6 transform rounded-full bg-surface shadow ring-0 transition duration-200 translate-x-5 mt-0.5"></span>
+</button>
+</div>
+<!-- Volume Slider -->
+<div class="flex flex-col gap-space-xs p-space-sm">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface font-bold">Volumen del Altavoz de la Caja</label>
+<span class="font-label-sm text-label-sm text-primary font-bold" id="volumeLevelText">85%</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container rounded-lg cursor-pointer mt-1" max="100" min="0" oninput="document.getElementById('volumeLevelText').textContent = this.value + '%'" type="range" value="85"/>
+</div>
+<!-- Fiao Callout -->
+<div class="flex items-start gap-space-sm p-space-md bg-secondary-fixed text-on-secondary-fixed rounded-2xl">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">handshake</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold">Aviso del Cuaderno de Fiao</span>
+<span class="font-body-sm text-body-sm">Recibirás un recordatorio discreto a las 6:00 PM con los saldos pendientes por cobrar en la comunidad.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: HELP & COMMUNITY SUPPORT -->
+<section class="hidden flex-col w-full gap-space-md transition-opacity duration-200" id="section-help">
+<div class="flex items-center justify-between py-1 bg-surface sticky top-28 z-20">
+<button class="inline-flex items-center gap-1 text-primary font-label-lg text-label-lg py-1 px-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="navigateToSection('main')" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Volver</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Centro de Ayuda</span>
+<div class="w-12"></div>
+</div>
+<!-- Direct WhatsApp Support Hero Card -->
+<div class="flex flex-col p-space-lg bg-gradient-to-br from-primary via-primary-container to-primary text-on-primary rounded-3xl shadow-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-md">
+<span class="material-symbols-outlined text-[28px] text-white">support_agent</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-primary font-bold">Soporte Kiosquito Caracas</h3>
+<p class="font-body-sm text-body-sm text-on-primary/80">Atención a tenderos y bodegueros en minutos</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-primary/95 mt-space-md leading-snug">
+        ¿Tienes dudas con el cálculo de la tasa del día, la balanza digital o el ticket fiscal? Nuestro equipo técnico te apoya al instante por WhatsApp.
+      </p>
+<button class="mt-space-md w-full min-h-[48px] rounded-2xl bg-surface-container-lowest text-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow hover:bg-surface-container transition-all active:scale-[0.98]" onclick="showToast('Conectando con el asesor de WhatsApp...')" type="button">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Chatear con Asesor Kiosquito</span>
+</button>
+</div>
+<!-- Quick Help Links -->
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-md shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold px-space-sm py-1.5">Preguntas y Guías Rápidas</span>
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low transition-colors text-left" onclick="showToast('Abriendo video-guía rápida de venta POS')" type="button">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-primary text-[20px]">play_circle</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Cómo vender en 10 segundos con teclado táctil</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">open_in_new</span>
+</button>
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low transition-colors text-left mt-1" onclick="showToast('Abriendo guía de cuadre de caja')" type="button">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-primary text-[20px]">calculate</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Cierre diario y cuadre de bolívares vs divisas</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">open_in_new</span>
+</button>
+<button class="w-full flex items-center justify-between p-space-sm rounded-2xl hover:bg-surface-container-low transition-colors text-left mt-1" onclick="showToast('Formulario de sugerencias abierto')" type="button">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-secondary text-[20px]">lightbulb</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Enviar sugerencia de nueva función</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- SECTION: LEGAL & DATA -->
+<section class="hidden flex-col w-full gap-space-md transition-opacity duration-200" id="section-legal">
+<div class="flex items-center justify-between py-1 bg-surface sticky top-28 z-20">
+<button class="inline-flex items-center gap-1 text-primary font-label-lg text-label-lg py-1 px-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="navigateToSection('main')" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Volver</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Términos y Políticas</span>
+<div class="w-12"></div>
+</div>
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm gap-space-md leading-relaxed">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Privacidad y Almacenamiento Local</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Protección integral de datos comerciales</span>
+</div>
+</div>
+<div class="space-y-space-md text-on-surface-variant font-body-md text-body-md">
+<p>
+<strong class="text-on-surface font-bold">1. Soberanía de Datos Locales:</strong> Kiosquito almacena el catálogo de productos, inventario en estantes y el cuaderno de deudas (*fiao*) prioritariamente en el almacenamiento seguro de tu dispositivo. Puedes operar tu caja sin conexión a internet y el sistema sincronizará los cambios automáticamente al detectar red.
+        </p>
+<p>
+<strong class="text-on-surface font-bold">2. Dualidad Monetaria:</strong> Las conversiones entre Dólares Estadounidenses (USD) y Bolívares (VES) son de referencia interna para el cobro ágil. Kiosquito no interviene ni procesa transacciones bancarias directas, operando como software de gestión y punto de venta independiente.
+        </p>
+<p>
+<strong class="text-on-surface font-bold">3. Respaldo Cifrado:</strong> Cada cierre de caja y reporte mensual se cifra punto a punto para garantizar que únicamente el dueño registrado tenga visibilidad de los balances financieros de la Bodega San Antonio.
+        </p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-2xl flex items-center justify-between mt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Versión del Contrato: v2.4 (2025)</span>
+<button class="font-label-md text-label-md text-primary font-bold hover:underline" onclick="showToast('Copia de los términos enviada a tu correo')" type="button">
+          Descargar PDF
+        </button>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // State management for instantaneous navigation without reloads
+  let activeSection = 'main';
+
+  function navigateToSection(targetId) {
+    const sections = ['main', 'company', 'account', 'security', 'appearance', 'notifications', 'help', 'legal'];
+    
+    sections.forEach(id => {
+      const el = document.getElementById('section-' + id);
+      if (el) {
+        if (id === targetId) {
+          el.classList.remove('hidden');
+          el.classList.add('flex');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        }
+      }
+    });
+
+    activeSection = targetId;
+  }
+
+  // Toast banner feedback
+  function showToast(message, icon = 'check_circle') {
+    const toast = document.getElementById('toastNotification');
+    const toastMessage = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+
+    if (!toast) return;
+
+    toastMessage.textContent = message;
+    toastIcon.textContent = icon;
+
+    toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+    toast.classList.add('opacity-100', 'translate-y-0');
+
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+      toast.classList.remove('opacity-100', 'translate-y-0');
+    }, 2800);
+  }
+
+  // Save company data
+  function saveCompanyData() {
+    showToast('Datos de la bodega actualizados con éxito', 'done_all');
+    setTimeout(() => {
+      navigateToSection('main');
+    }, 1200);
+  }
+
+  // Password update
+  function updatePassword() {
+    const pNew = document.getElementById('pwd-new').value;
+    const pConfirm = document.getElementById('pwd-confirm').value;
+
+    if (pNew !== pConfirm) {
+      showToast('Las contraseñas nuevas no coinciden', 'error');
+      return;
+    }
+
+    showToast('Contraseña de caja actualizada correctamente', 'lock');
+    document.getElementById('pwd-current').value = '';
+    document.getElementById('pwd-new').value = '';
+    document.getElementById('pwd-confirm').value = '';
+
+    setTimeout(() => {
+      navigateToSection('main');
+    }, 1200);
+  }
+
+  // Password Show/Hide Toggle
+  function togglePasswordVisibility(fieldId, btn) {
+    const input = document.getElementById(fieldId);
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.textContent = 'visibility_off';
+    } else {
+      input.type = 'password';
+      icon.textContent = 'visibility';
+    }
+  }
+
+  // Real Dark Mode Toggle
+  function toggleDarkMode() {
+    const btn = document.getElementById('darkModeToggle');
+    const knob = document.getElementById('darkModeKnob');
+    const icon = document.getElementById('darkIcon');
+    const themeLabel = document.getElementById('currentThemeLabel');
+    const htmlEl = document.documentElement;
+
+    const isDark = htmlEl.classList.toggle('dark');
+    btn.setAttribute('aria-pressed', isDark);
+
+    if (isDark) {
+      btn.classList.remove('bg-outline-variant');
+      btn.classList.add('bg-primary');
+      knob.classList.remove('translate-x-0.5');
+      knob.classList.add('translate-x-5');
+      icon.textContent = 'dark_mode';
+      if (themeLabel) themeLabel.textContent = 'Oscuro • ES';
+      showToast('Modo Oscuro activado');
+    } else {
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-outline-variant');
+      knob.classList.remove('translate-x-5');
+      knob.classList.add('translate-x-0.5');
+      icon.textContent = 'light_mode';
+      if (themeLabel) themeLabel.textContent = 'Claro • ES';
+      showToast('Modo Claro activado');
+    }
+  }
+
+  // Language Selector
+  function setLanguage(lang) {
+    const btnEs = document.getElementById('lang-btn-es');
+    const btnEn = document.getElementById('lang-btn-en');
+    const themeLabel = document.getElementById('currentThemeLabel');
+    const iconEs = btnEs.querySelector('.material-symbols-outlined');
+    const iconEn = btnEn.querySelector('.material-symbols-outlined');
+
+    if (lang === 'es') {
+      btnEs.className = "flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-primary text-on-primary font-label-lg text-label-lg shadow-sm transition-all";
+      btnEn.className = "flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-surface-container-low text-on-surface font-label-lg text-label-lg hover:bg-surface-container transition-all";
+      iconEs.classList.remove('opacity-0');
+      iconEn.classList.add('opacity-0');
+      if (themeLabel) themeLabel.textContent = 'Claro • ES';
+      showToast('Idioma configurado a Español');
+    } else {
+      btnEn.className = "flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-primary text-on-primary font-label-lg text-label-lg shadow-sm transition-all";
+      btnEs.className = "flex items-center justify-center gap-2 py-3 px-space-md rounded-2xl bg-surface-container-low text-on-surface font-label-lg text-label-lg hover:bg-surface-container transition-all";
+      iconEn.classList.remove('opacity-0');
+      iconEs.classList.add('opacity-0');
+      if (themeLabel) themeLabel.textContent = 'Light • EN';
+      showToast('Language switched to English');
+    }
+  }
+
+  // Simple Switch micro-interaction
+  function toggleSimpleSwitch(btn) {
+    const isPressed = btn.getAttribute('aria-pressed') === 'true';
+    const knob = btn.querySelector('span');
+
+    if (isPressed) {
+      btn.setAttribute('aria-pressed', 'false');
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-outline-variant');
+      knob.classList.remove('translate-x-5');
+      knob.classList.add('translate-x-0.5');
+      showToast('Ajuste desactivado');
+    } else {
+      btn.setAttribute('aria-pressed', 'true');
+      btn.classList.remove('bg-outline-variant');
+      btn.classList.add('bg-primary');
+      knob.classList.remove('translate-x-0.5');
+      knob.classList.add('translate-x-5');
+      showToast('Ajuste activado');
+    }
+  }
+
+  // Avatar and Logo upload simulation
+  const avatarInput = document.getElementById('avatarFileInput');
+  if (avatarInput) {
+    avatarInput.addEventListener('change', function(e) {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('avatarImageDisplay').src = evt.target.result;
+          showToast('Foto de tendero actualizada', 'face');
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+  }
+
+  const logoInput = document.getElementById('companyLogoInput');
+  if (logoInput) {
+    logoInput.addEventListener('change', function(e) {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('companyLogoDisplay').src = evt.target.result;
+          showToast('Logotipo de bodega actualizado', 'image');
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+  }
+
+  // Logout micro-interaction
+  function handleLogout() {
+    showToast('Cerrando sesión de Bodega San Antonio...', 'hourglass_empty');
+    setTimeout(() => {
+      showToast('Sesión guardada en modo seguro offline', 'lock');
+    }, 1500);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-bold scale-105"><div class="flex items-center justify-around h-16 px-gutter-mobile"><a class="flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="vender-pos" href="#"><span class="material-symbols-outlined text-[22px]">point_of_sale</span><span class="font-label-sm text-label-sm leading-tight text-center">POS</span></a><a class="flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="cobros-y-recibos" href="#"><span class="material-symbols-outlined text-[22px]">receipt_long</span><span class="font-label-sm text-label-sm leading-tight text-center">Cobros</span></a><a aria-current="page" class="relative flex flex-col items-center justify-center w-16 h-12 gap-0.5 transition-transform duration-150 text-primary font-bold scale-105" data-path="clientes-confiables" href="#"><span class="material-symbols-outlined text-[22px]">handshake</span><span class="absolute top-0 right-3 w-2 h-2 rounded-full bg-secondary-container"></span><span class="font-label-sm text-label-sm leading-tight text-center">Fiao</span></a><a class="relative flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="inventario-y-compras" href="#"><span class="material-symbols-outlined text-[22px]">inventory_2</span><span class="absolute top-0 right-3 w-2 h-2 rounded-full bg-error"></span><span class="font-label-sm text-label-sm leading-tight text-center">Stock</span></a></div></nav></body></html>
