@@ -4,6 +4,7 @@
   "description": "Punto de venta táctil, control de inventario y libreta de fiao para bodegas y comercios de barrio.",
   "main": "index.js",
   "scripts": {
+    "dev": "echo 'Iniciando servidor de desarrollo...' && npx http-server .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "AppSoftwares",

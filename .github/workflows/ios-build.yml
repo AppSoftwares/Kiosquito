@@ -37,7 +37,7 @@ jobs:
 
       - name: Rename APK
         run: |
-          APK_FILE=$(find . -name "*-release.apk" | head -n 1)
+          APK_FILE=$(find "Android, iOS y web/app/build/outputs/apk/release" -name "*.apk" | head -n 1)
           cp "$APK_FILE" "KiosquitoApp [${{ env.VERSION }}].apk"
 
       - name: Build iOS IPA
