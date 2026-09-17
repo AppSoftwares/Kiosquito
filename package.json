@@ -1,0 +1,11 @@
+{
+  "name": "kiosquito",
+  "version": "0.0.1",
+  "description": "Punto de venta táctil, control de inventario y libreta de fiao para bodegas y comercios de barrio.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AppSoftwares",
+  "license": "ISC"
+}

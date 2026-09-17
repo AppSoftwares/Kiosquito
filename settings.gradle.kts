@@ -26,3 +26,4 @@ rootProject.name = "Kiosquito"
 
 
 include(":app")
+project(":app").projectDir = file("Android, iOS y web/app")
