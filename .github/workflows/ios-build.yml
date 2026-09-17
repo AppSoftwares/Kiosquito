@@ -37,12 +37,11 @@ jobs:
 
       - name: Initialize Capacitor iOS
         run: |
+          rm -rf www
           mkdir -p www
           cp index.html www/
           cp -r "Android, iOS y web/web" www/
           npx cap sync ios
-          cd ios/App
-          pod install
 
       - name: Extract Version Name
         id: get_version
@@ -64,18 +63,34 @@ jobs:
       - name: Build Unsigned iOS App
         run: |
           cd ios/App
-          xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos \
+          # Limpiar y compilar el workspace para asegurar que Capacitor y Pods se vinculen
+          xcodebuild -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Release \
+            -sdk iphoneos \
             -destination 'generic/platform=iOS' \
-            CONFIGURATION_BUILD_DIR=build/Release-iphoneos \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGN_ENTITLEMENTS="" \
             clean build
           
-          # Crear la estructura de IPA (Payload folder)
+          # Buscar el binario .app generado (usualmente en DerivedData en CI)
+          APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData -name "App.app" -type d | grep "Release-iphoneos" | head -n 1)
+          
+          if [ -z "$APP_PATH" ]; then
+            echo "Buscando en ruta local..."
+            APP_PATH=$(find . -name "App.app" -type d | head -n 1)
+          fi
+
+          if [ -z "$APP_PATH" ]; then
+            echo "Error: No se encontró el archivo App.app"
+            exit 1
+          fi
+
+          echo "App encontrada en: $APP_PATH"
           mkdir -p Payload
-          cp -r build/Release-iphoneos/App.app Payload/
+          cp -r "$APP_PATH" Payload/
           zip -r "../../KiosquitoApp [${{ env.VERSION }}].ipa" Payload/
 
       - name: Create Release
