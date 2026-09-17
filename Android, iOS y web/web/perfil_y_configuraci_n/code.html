@@ -41,7 +41,7 @@
 <!-- Supabase Sync Badge -->
 <div class="mt-2.5 inline-flex items-center gap-1.5 self-center sm:self-start bg-black/20 backdrop-blur-sm px-2.5 py-1 rounded-full text-on-primary">
 <span class="w-2 h-2 rounded-full bg-primary-fixed animate-ping"></span>
-<span class="font-label-sm text-label-sm">Kiosquito Cloud &amp; Supabase al día</span>
+<span class="font-label-sm text-label-sm" id="syncStatus">Última sincro: Hoy 10:45 AM (Supabase)</span>
 </div>
 </div>
 </div>
@@ -153,11 +153,28 @@
 </div>
 <!-- Logout Action -->
 <div class="flex flex-col items-center pt-2">
-<button class="w-full flex items-center justify-center gap-space-xs py-3 px-space-md rounded-2xl bg-error-container text-on-error-container font-label-lg text-label-lg hover:opacity-95 active:scale-98 transition-all shadow-sm" onclick="handleLogout()" type="button">
+<button class="w-full flex items-center justify-center gap-space-xs py-3 px-space-md rounded-2xl bg-error-container text-on-error-container font-label-lg text-label-lg hover:opacity-95 active:scale-98 transition-all shadow-sm" onclick="openLogoutModal()" type="button">
 <span class="material-symbols-outlined text-[20px]">logout</span>
 <span>Cerrar Sesión en esta Caja</span>
 </button>
 <span class="font-label-sm text-label-sm text-on-surface-variant/70 mt-space-sm">Kiosquito POS v2.4.1 (Build 2025-CARACAS)</span>
+</div>
+
+<!-- Logout Confirmation Modal -->
+<div id="logoutModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-surface p-6 rounded-3xl shadow-2xl max-w-sm w-full transform scale-95 transition-transform duration-300" id="logoutModalContent">
+        <div class="flex flex-col items-center text-center gap-4">
+            <div class="w-16 h-16 rounded-full bg-error-container text-on-error-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-[40px]">logout</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">¿Cerrar sesión en la caja?</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">Asegúrate de que todas las ventas offline se hayan sincronizado (ver indicador verde) antes de salir.</p>
+            <div class="flex flex-col w-full gap-2 pt-2">
+                <button onclick="confirmLogout()" class="w-full py-3 rounded-2xl bg-error text-on-error font-label-lg text-label-lg font-bold shadow-md active:scale-95 transition-transform">Sí, cerrar sesión</button>
+                <button onclick="closeLogoutModal()" class="w-full py-3 rounded-2xl bg-surface-container text-on-surface font-label-lg text-label-lg font-bold active:scale-95 transition-transform">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </div>
 </section>
 <!-- SECTION: COMPANY / BODEGA PROFILE -->
@@ -551,7 +568,8 @@
 <div class="w-12"></div>
 </div>
 <!-- Direct WhatsApp Support Hero Card -->
-<div class="flex flex-col p-space-lg bg-gradient-to-br from-primary via-primary-container to-primary text-on-primary rounded-3xl shadow-md">
+<div class="flex flex-col p-space-lg bg-gradient-to-br from-primary via-primary-container to-primary text-on-primary rounded-3xl shadow-md relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse"></div>
 <div class="flex items-center gap-space-md">
 <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-md">
 <span class="material-symbols-outlined text-[28px] text-white">support_agent</span>
@@ -564,11 +582,57 @@
 <p class="font-body-md text-body-md text-on-primary/95 mt-space-md leading-snug">
         ¿Tienes dudas con el cálculo de la tasa del día, la balanza digital o el ticket fiscal? Nuestro equipo técnico te apoya al instante por WhatsApp.
       </p>
-<button class="mt-space-md w-full min-h-[48px] rounded-2xl bg-surface-container-lowest text-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow hover:bg-surface-container transition-all active:scale-[0.98]" onclick="showToast('Conectando con el asesor de WhatsApp...')" type="button">
+<button class="mt-space-md w-full min-h-[48px] rounded-2xl bg-surface-container-lowest text-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow hover:bg-surface-container transition-all active:scale-[0.98]" onclick="window.open('https://wa.me/584125550199', '_blank')" type="button">
 <span class="material-symbols-outlined text-[20px]">chat</span>
 <span>Chatear con Asesor Kiosquito</span>
 </button>
 </div>
+
+<!-- FAQ Accordion -->
+<div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-md shadow-sm">
+    <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold px-space-sm py-1.5">Preguntas Frecuentes</span>
+
+    <div class="flex flex-col gap-2 mt-2">
+        <!-- FAQ 1 -->
+        <details class="group bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-300">
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                <span class="font-label-lg text-label-lg text-on-surface font-bold">¿Cómo sincronizar la impresora Bluetooth?</span>
+                <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="px-4 pb-4 font-body-sm text-body-sm text-on-surface-variant">
+                Ve a Configuración > Dispositivos, enciende tu impresora y pulsa "Escanear". Selecciona tu dispositivo de la lista y listo.
+            </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="group bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-300">
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                <span class="font-label-lg text-label-lg text-on-surface font-bold">¿Cómo ajustar la tasa oficial BCV?</span>
+                <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="px-4 pb-4 font-body-sm text-body-sm text-on-surface-variant">
+                Pulsa el icono de moneda en la parte superior derecha de la pantalla principal. Ingresa el valor del día y guarda.
+            </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="group bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-300">
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                <span class="font-label-lg text-label-lg text-on-surface font-bold">¿El modo offline guarda mis ventas?</span>
+                <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="px-4 pb-4 font-body-sm text-body-sm text-on-surface-variant">
+                ¡Sí! Kiosquito guarda todo en tu celular y lo sube a la nube automáticamente cuando recuperes la conexión.
+            </div>
+        </details>
+    </div>
+</div>
+
+<!-- WhatsApp FAB -->
+<button class="fixed bottom-24 right-4 w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50 animate-bounce" onclick="window.open('https://wa.me/584125550199', '_blank')" title="Ayuda inmediata">
+    <span class="material-symbols-outlined text-[32px]">chat</span>
+</button>
+
 <!-- Quick Help Links -->
 <div class="flex flex-col bg-surface-container-lowest rounded-3xl p-space-md shadow-sm">
 <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold px-space-sm py-1.5">Preguntas y Guías Rápidas</span>
@@ -827,10 +891,30 @@
   }
 
   // Logout micro-interaction
+  function openLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    const content = document.getElementById('logoutModalContent');
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    modal.classList.add('opacity-100');
+    content.classList.remove('scale-95');
+    content.classList.add('scale-100');
+  }
+
+  function closeLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    const content = document.getElementById('logoutModalContent');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.classList.remove('opacity-100');
+    content.classList.add('scale-95');
+    content.classList.remove('scale-100');
+  }
+
+  function confirmLogout() {
+    closeLogoutModal();
+    showToast('Sesión guardada y cerrada con éxito', 'lock');
+  }
+
   function handleLogout() {
-    showToast('Cerrando sesión de Bodega San Antonio...', 'hourglass_empty');
-    setTimeout(() => {
-      showToast('Sesión guardada en modo seguro offline', 'lock');
-    }, 1500);
+    openLogoutModal();
   }
 </script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-bold scale-105"><div class="flex items-center justify-around h-16 px-gutter-mobile"><a class="flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="vender-pos" href="#"><span class="material-symbols-outlined text-[22px]">point_of_sale</span><span class="font-label-sm text-label-sm leading-tight text-center">POS</span></a><a class="flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="cobros-y-recibos" href="#"><span class="material-symbols-outlined text-[22px]">receipt_long</span><span class="font-label-sm text-label-sm leading-tight text-center">Cobros</span></a><a aria-current="page" class="relative flex flex-col items-center justify-center w-16 h-12 gap-0.5 transition-transform duration-150 text-primary font-bold scale-105" data-path="clientes-confiables" href="#"><span class="material-symbols-outlined text-[22px]">handshake</span><span class="absolute top-0 right-3 w-2 h-2 rounded-full bg-secondary-container"></span><span class="font-label-sm text-label-sm leading-tight text-center">Fiao</span></a><a class="relative flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="inventario-y-compras" href="#"><span class="material-symbols-outlined text-[22px]">inventory_2</span><span class="absolute top-0 right-3 w-2 h-2 rounded-full bg-error"></span><span class="font-label-sm text-label-sm leading-tight text-center">Stock</span></a></div></nav></body></html>

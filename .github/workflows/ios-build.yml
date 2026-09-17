@@ -10,6 +10,8 @@ jobs:
   build:
     name: Build APK and IPA
     runs-on: macos-latest
+    permissions:
+      contents: write # Necesario para crear el Release
     
     steps:
       - name: Checkout repository
