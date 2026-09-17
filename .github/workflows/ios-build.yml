@@ -37,7 +37,9 @@ jobs:
 
       - name: Initialize Capacitor iOS
         run: |
-          npx cap add ios
+          mkdir -p www
+          cp index.html www/
+          cp -r "Android, iOS y web/web" www/
           npx cap sync ios
 
       - name: Extract Version Name
