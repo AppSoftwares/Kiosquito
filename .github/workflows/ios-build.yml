@@ -41,6 +41,8 @@ jobs:
           cp index.html www/
           cp -r "Android, iOS y web/web" www/
           npx cap sync ios
+          cd ios/App
+          pod install
 
       - name: Extract Version Name
         id: get_version
@@ -62,13 +64,13 @@ jobs:
       - name: Build Unsigned iOS App
         run: |
           cd ios/App
-          # Definimos una ruta de salida fija para poder encontrar el .app
           xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             CONFIGURATION_BUILD_DIR=build/Release-iphoneos \
             CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGN_ENTITLEMENTS="" \
-            CODE_SIGNING_REQUIRED=NO \
             clean build
           
           # Crear la estructura de IPA (Payload folder)
