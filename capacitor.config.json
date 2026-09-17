@@ -1,0 +1,6 @@
+{
+  "appId": "com.appsoftwares.kiosquito",
+  "appName": "Kiosquito",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}

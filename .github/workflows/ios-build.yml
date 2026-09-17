@@ -4,14 +4,14 @@ on:
   push:
     tags:
       - 'V.*'
-  workflow_dispatch: # Permite ejecución manual como se ve en la imagen
+  workflow_dispatch:
 
 jobs:
   build:
     name: Build APK and IPA
     runs-on: macos-latest
     permissions:
-      contents: write # Necesario para crear el Release
+      contents: write
     
     steps:
       - name: Checkout repository
@@ -24,8 +24,19 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Initialize Capacitor iOS
+        run: |
+          npx cap add ios
+          npx cap sync ios
 
       - name: Extract Version Name
         id: get_version
@@ -35,18 +46,29 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build Android APK
-        run: ./gradlew :app:assembleRelease
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:assembleRelease
 
       - name: Rename APK
         run: |
           APK_FILE=$(find "Android, iOS y web/app/build/outputs/apk/release" -name "*.apk" | head -n 1)
           cp "$APK_FILE" "KiosquitoApp [${{ env.VERSION }}].apk"
 
-      - name: Build iOS IPA
+      - name: Build Unsigned iOS App
         run: |
-          # Placeholder para construcción de IPA real con Xcode/Fastlane
-          # Por ahora generamos el archivo con el nombre correcto para cumplir con el requisito
-          echo "iOS Build process placeholder" > "KiosquitoApp [${{ env.VERSION }}].ipa"
+          cd ios/App
+          xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGN_ENTITLEMENTS="" \
+            CODE_SIGNING_REQUIRED=NO \
+            clean build
+          
+          # Crear la estructura de IPA (Payload folder)
+          mkdir -p Payload
+          cp -r build/Release-iphoneos/App.app Payload/
+          zip -r "../../KiosquitoApp [${{ env.VERSION }}].ipa" Payload/
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
@@ -61,8 +83,7 @@ jobs:
             KiosquitoApp [*.ipa
           body: |
             ## Notas de Lanzamiento - V.${{ env.VERSION }}
-            - Generación automática de binarios APK e IPA.
-            - Versión: ${{ env.VERSION }}
-            - Ejecución: ${{ github.event_name }}
+            - Binarios reales generados.
+            - **Instrucción para iOS**: Descarga el archivo .ipa y úsalo con Sideloadly para firmarlo con tu Apple ID gratuito.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

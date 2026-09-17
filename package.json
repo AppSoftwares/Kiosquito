@@ -3,9 +3,22 @@
   "version": "0.0.1",
   "description": "Punto de venta táctil, control de inventario y libreta de fiao para bodegas y comercios de barrio.",
   "main": "index.js",
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/app": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  },
   "scripts": {
     "dev": "echo 'Iniciando servidor de desarrollo...' && npx http-server .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo 'Building web assets...'",
+    "copy": "npx cap copy",
+    "sync": "npx cap sync",
+    "open": "npx cap open"
   },
   "author": "AppSoftwares",
   "license": "ISC"
