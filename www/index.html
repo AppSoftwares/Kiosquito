@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Kiosquito - Tu Negocio en Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f9f9ff; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="text-[#111c2d]">
+    <nav class="p-6 flex justify-between items-center glass sticky top-0 z-50 border-b border-[#cfdaf2]">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#006a39] rounded-xl flex items-center justify-center">
+                <span class="material-symbols-outlined text-white">storefront</span>
+            </div>
+            <h1 class="text-2xl font-800 tracking-tight text-[#006a39]">Kiosquito</h1>
+        </div>
+        <div class="flex gap-4">
+            <a href="https://github.com/AppSoftwares/Kiosquito" class="flex items-center gap-2 text-sm font-600 hover:text-[#006a39] transition-colors">
+                <span class="material-symbols-outlined text-lg">code</span> GitHub
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <header class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-800 mb-4 text-[#111c2d]">Tu bodega, <span class="text-[#006a39]">ahora en todas partes</span></h2>
+            <p class="text-lg text-[#3e4a3f] max-w-2xl mx-auto">Gestiona ventas, inventario y cuentas por cobrar de forma fácil y táctil. Accede desde tu móvil, tablet o PC.</p>
+        </header>
+
+        <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <!-- POS Web -->
+            <a href="Android, iOS y web/web/punto_de_venta_pos/code.html" class="group p-8 bg-white rounded-3xl shadow-sm border border-[#cfdaf2] hover:border-[#006a39] hover:shadow-xl transition-all">
+                <div class="w-14 h-14 bg-[#e7eeff] text-[#4648d4] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">point_of_sale</span>
+                </div>
+                <h3 class="text-xl font-700 mb-2">Punto de Venta (POS)</h3>
+                <p class="text-[#3e4a3f] mb-4">Interfaz optimizada para cobros rápidos y táctiles.</p>
+                <span class="text-[#006a39] font-600 flex items-center gap-1">Entrar ahora <span class="material-symbols-outlined">arrow_forward</span></span>
+            </a>
+
+            <!-- Inventario -->
+            <a href="Android, iOS y web/web/inventario_y_compras/code.html" class="group p-8 bg-white rounded-3xl shadow-sm border border-[#cfdaf2] hover:border-[#4648d4] hover:shadow-xl transition-all">
+                <div class="w-14 h-14 bg-[#fffbff] text-[#855300] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">inventory_2</span>
+                </div>
+                <h3 class="text-xl font-700 mb-2">Inventario y Compras</h3>
+                <p class="text-[#3e4a3f] mb-4">Controla tus existencias y gestiona tus proveedores.</p>
+                <span class="text-[#4648d4] font-600 flex items-center gap-1">Ver Stock <span class="material-symbols-outlined">arrow_forward</span></span>
+            </a>
+
+            <!-- Clientes/Fiao -->
+            <a href="Android, iOS y web/web/clientes_confiables_fiao/code.html" class="group p-8 bg-white rounded-3xl shadow-sm border border-[#cfdaf2] hover:border-[#ba1a1a] hover:shadow-xl transition-all">
+                <div class="w-14 h-14 bg-[#ffdad6] text-[#ba1a1a] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">group</span>
+                </div>
+                <h3 class="text-xl font-700 mb-2">Libreta de Fiao</h3>
+                <p class="text-[#3e4a3f] mb-4">Gestiona deudas y pagos de tus clientes de confianza.</p>
+                <span class="text-[#ba1a1a] font-600 flex items-center gap-1">Gestionar Deudas <span class="material-symbols-outlined">arrow_forward</span></span>
+            </a>
+        </section>
+
+        <section class="bg-[#006a39] rounded-[2rem] p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="max-w-md">
+                <h3 class="text-3xl font-800 mb-4">Descarga la App Nativa</h3>
+                <p class="text-white/80 mb-6">Lleva Kiosquito en tu bolsillo con nuestra aplicación para Android e iOS.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://github.com/AppSoftwares/Kiosquito/releases" class="bg-white text-[#006a39] px-6 py-3 rounded-full font-700 flex items-center gap-2 hover:bg-[#82faab] transition-colors">
+                        <span class="material-symbols-outlined">android</span> Descargar APK
+                    </a>
+                    <a href="#" class="bg-white/10 text-white px-6 py-3 rounded-full font-700 flex items-center gap-2 hover:bg-white/20 transition-colors">
+                        <span class="material-symbols-outlined">apple</span> iOS (Próximamente)
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <span class="material-symbols-outlined text-[120px] text-white/20">install_mobile</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-12 text-[#3e4a3f] border-t border-[#cfdaf2] mt-12">
+        <p class="font-600">© 2026 Kiosquito by AppSoftwares</p>
+        <p class="text-sm">Versión V.0.0.1 - Hecho con ❤️ para tu negocio</p>
+    </footer>
+</body>
+</html>
