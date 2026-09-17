@@ -45,7 +45,14 @@ android {
       isCrunchPngs = false
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-      signingConfig = signingConfigs.getByName("release")
+      
+      // Solo aplicar la firma si el archivo del keystore existe (evita errores en CI)
+      val keystoreFile = signingConfigs.getByName("release").storeFile
+      if (keystoreFile != null && keystoreFile.exists()) {
+          signingConfig = signingConfigs.getByName("release")
+      } else {
+          println("WARNING: Release keystore not found. Generating an unsigned APK.")
+      }
     }
     debug { }
   }
