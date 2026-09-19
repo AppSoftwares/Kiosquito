@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+    <meta name="theme-color" content="#006a39">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Kiosquito">
+    <link rel="apple-touch-icon" href="../assets/KiosquitoIcons/Web/apple-touch-icon.png">
+    <link rel="manifest" href="../manifest.webmanifest">
+    <title>Kiosquito</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed": "#07006c", "outline-variant": "#bdcabc", "surface-container": "#e7eeff", "surface": "#f9f9ff", "error-container": "#ffdad6", "on-surface": "#111c2d", "tertiary-fixed-dim": "#c0c1ff", "primary-fixed-dim": "#64dd91", "secondary": "#855300", "secondary-container": "#fea619", "surface-container-highest": "#d8e3fb", "on-primary": "#ffffff", "tertiary-fixed": "#e1e0ff", "on-tertiary": "#ffffff", "on-error": "#ffffff", "on-background": "#111c2d", "secondary-fixed": "#ffddb8", "on-primary-container": "#f6fff4", "on-secondary-container": "#684000", "tertiary-container": "#6063ee", "surface-bright": "#f9f9ff", "primary": "#006a39", "on-surface-variant": "#3e4a3f", "on-secondary-fixed-variant": "#653e00", "surface-container-low": "#f0f3ff", "on-tertiary-container": "#fffbff", "primary-fixed": "#82faab", "outline": "#6d7a6f", "on-secondary-fixed": "#2a1700", "inverse-primary": "#64dd91", "on-primary-fixed-variant": "#00522b", "on-error-container": "#93000a", "inverse-surface": "#263143", "secondary-fixed-dim": "#ffb95f", "surface-dim": "#cfdaf2", "on-primary-fixed": "#00210e", "background": "#f9f9ff", "tertiary": "#4648d4", "error": "#ba1a1a", "surface-tint": "#006d3a", "on-secondary": "#ffffff", "surface-container-high": "#dee8ff", "surface-variant": "#d8e3fb", "on-tertiary-fixed-variant": "#2f2ebe", "primary-container": "#008649", "inverse-on-surface": "#ecf1ff", "surface-container-lowest": "#ffffff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "margin-mobile": "1rem", "space-md": "0.75rem", "gutter": "1rem", "space-lg": "1.25rem", "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin": "1.25rem", "space-xl": "1.75rem" }, fontFamily: { "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "currency-display": ["Plus Jakarta Sans"], "currency-sub": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, fontSize: { "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "currency-display": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "currency-sub": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}
+    @media (pointer: coarse){@media (pointer: coarse){::-webkit-scrollbar{display:none;}}}
+    </style><style>
+    body {
+      min-height: 100dvh;
+    }
+    @media print {
+      body * { visibility: hidden; }
+      #receipt-paper, #receipt-paper * { visibility: visible; }
+      #receipt-paper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+      header, nav, main > *:not(#receipt-parent), #confirm-checkout-btn, .pb-safe, .pt-safe { display: none !important; }
+    }
+    #toastNotification {
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    }
+  </style>
+  </head><body class="bg-surface-container-low font-body-md text-body-md text-on-surface flex flex-col min-h-[100dvh] items-center">
+    <!-- Toast Notification -->
+    <div class="fixed top-28 left-1/2 -translate-x-1/2 z-[100] px-4 py-2 rounded-full bg-inverse-surface text-inverse-on-surface shadow-xl flex items-center gap-2 opacity-0 pointer-events-none transform -translate-y-2" id="toastNotification">
+        <span class="material-symbols-outlined text-primary-fixed text-[18px]">check_circle</span>
+        <span class="font-label-md text-label-md" id="toastMessage">¡Copiado!</span>
+    </div><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-28 px-gutter-mobile flex flex-col justify-between py-space-sm max-w-md mx-auto"><div class="flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="Kiosquito Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPt0eh_DSpOoETGT6mUCkuh58-PrHlBUupXbuM5t6BcEQgXzJzBX2r-EJFicW6BJXXOrCoa9_DaRo075CEXC_dr7cMqzZT1vV-6DTJZ7eBztG_ccfEade3vg4KofLIk3MxqtaqVL5rJ-kg0g7octyN7wrGuFoV0rVVOg50CZYyVd8yvjKGkIPIm-Qlvavmr6mcDliu3YNhbXFYTs6oL4hmkcLIkaER2WPHnrZRHlMImajLG0k3CNouUg"/><div class="flex flex-col min-w-0"><span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold leading-none">Kiosquito</span><h1 class="font-headline-sm text-headline-sm text-on-surface truncate font-bold leading-tight">Bodega San Antonio</h1></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="flex items-center gap-1 bg-surface-container px-2 py-1 rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-[14px] text-primary">print</span><span class="font-label-sm text-label-sm hidden sm:inline">Impresora</span><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="flex items-center justify-between gap-space-sm pt-1"><div class="inline-flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed px-2.5 py-1 rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><span class="material-symbols-outlined text-[14px] text-secondary">currency_exchange</span><span class="font-label-md text-label-md font-bold">Tasa: 1 USD = 36.50 Bs</span><button aria-label="Copiar tasa" class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-secondary/10" onclick="copyExchangeRate()" type="button"><span class="material-symbols-outlined text-[13px] text-secondary">content_copy</span></button></div><div class="font-label-md text-label-md font-bold text-on-surface-variant tracking-wide uppercase">Cobros &amp; Recibos</div></div></div></header><main class="flex flex-col relative w-full pt-28 pb-24 px-gutter-mobile bg-surface min-h-[100dvh] max-w-md mx-auto"><div class="flex flex-col w-full gap-space-md">
+<!-- Tarjeta Resumen de Venta -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-primary/5 pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+          TICKET #0482
+        </span>
+<span class="flex items-center gap-1 text-primary font-label-md text-label-md font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          Caja Abierta
+        </span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Hoy, 10:42 AM</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-headline-sm text-headline-sm flex-shrink-0">
+          EP
+        </div>
+<div class="min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Sra. Elena Pérez</h2>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[13px] text-primary">verified_user</span>
+            Cliente Frecuente (Contado)
+          </span>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">Total Cobro</span>
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary font-extrabold leading-none">$6.00</div>
+<span class="font-currency-sub text-currency-sub text-secondary font-bold">≈ 219.00 Bs</span>
+</div>
+</div>
+</div>
+<!-- Métodos de Pago Multimoneda -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Forma de Pago</span>
+<span class="font-label-sm text-label-sm text-primary font-bold bg-primary-fixed/30 px-2 py-0.5 rounded-full">Multimoneda Activa</span>
+</div>
+<!-- Grid de métodos táctiles -->
+<div class="grid grid-cols-2 gap-space-xs" id="payment-methods">
+<!-- Efectivo USD (Activo por defecto) -->
+<button class="payment-method-btn flex items-center gap-space-xs p-3 rounded-xl bg-primary text-on-primary shadow-sm text-left transition-all active:scale-[0.98]" data-method="usd" type="button">
+<div class="w-9 h-9 rounded-lg bg-on-primary/15 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">attach_money</span>
+</div>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold block truncate">Efectivo Divisas</span>
+<span class="font-label-sm text-label-sm opacity-80 block truncate">Billetes USD ($)</span>
+</div>
+</button>
+<!-- Pago Móvil Bs -->
+<button class="payment-method-btn flex items-center gap-space-xs p-3 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm text-left transition-all active:scale-[0.98]" data-method="pagomovil" onclick="showPagoMovilInfo()" type="button">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">phone_android</span>
+</div>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold block truncate">Pago Móvil</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block truncate">Bs. Inmediato</span>
+</div>
+</button>
+<!-- Pago Móvil Info / Copy (Expandable) -->
+<div id="pago-movil-info" class="hidden col-span-2 p-space-md bg-primary-container/10 border border-primary/20 rounded-2xl flex flex-col gap-2">
+    <div class="flex items-center justify-between">
+        <span class="font-label-sm text-label-sm font-bold text-primary uppercase">Datos de Recepción</span>
+        <button onclick="copyPagoMovil()" class="text-primary font-bold font-label-sm text-label-sm flex items-center gap-1 hover:bg-primary/5 px-2 py-1 rounded-lg transition-colors">
+            <span class="material-symbols-outlined text-[16px]">content_copy</span>
+            Copiar Todo
+        </button>
+    </div>
+    <div class="grid grid-cols-2 gap-2 text-[13px]">
+        <div><span class="text-on-surface-variant">Banco:</span> <span class="font-bold">Mercantil</span></div>
+        <div><span class="text-on-surface-variant">Telf:</span> <span class="font-bold">04125550199</span></div>
+        <div class="col-span-2"><span class="text-on-surface-variant">RIF:</span> <span class="font-bold">J-408192841</span></div>
+    </div>
+</div>
+<!-- Efectivo Bolívares -->
+<button class="payment-method-btn flex items-center gap-space-xs p-3 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm text-left transition-all active:scale-[0.98]" data-method="bs" type="button">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold block truncate">Efectivo Bs</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block truncate">Cono vigente</span>
+</div>
+</button>
+<!-- Punto / Tarjeta -->
+<button class="payment-method-btn flex items-center gap-space-xs p-3 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm text-left transition-all active:scale-[0.98]" data-method="card" type="button">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0 text-tertiary">
+<span class="material-symbols-outlined text-[20px]">credit_card</span>
+</div>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold block truncate">Punto de Venta</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block truncate">Débito / Crédito</span>
+</div>
+</button>
+</div>
+<!-- Botón Destacado: Libreta de Fiao -->
+<button onclick="openFiaoModal()" class="w-full mt-1 flex items-center justify-between p-3 rounded-xl bg-secondary-fixed text-on-secondary-fixed shadow-sm active:scale-[0.98] transition-transform" type="button">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-secondary/15 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+</div>
+<div class="text-left">
+<div class="font-label-lg text-label-lg font-bold leading-tight">Anotar en Libreta (Fiao Confiable)</div>
+<div class="font-label-sm text-label-sm text-on-secondary-fixed-variant leading-tight">Saldo disponible de crédito: $25.00</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary">arrow_forward_ios</span>
+</button>
+
+<!-- Fiao Confirmation Modal -->
+<div id="fiaoModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-surface p-6 rounded-3xl shadow-2xl max-w-sm w-full transform scale-95 transition-transform duration-300" id="fiaoModalContent">
+        <div class="flex flex-col items-center text-center gap-4">
+            <div class="w-16 h-16 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined text-[40px]">menu_book</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">¿Anotar $6.00 en la libreta?</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">Esta venta se sumará a la deuda actual de <span class="font-bold text-on-surface">Elena Pérez</span>.</p>
+            <div class="flex flex-col w-full gap-2 pt-2">
+                <button onclick="confirmFiao()" class="w-full py-3 rounded-2xl bg-secondary text-white font-label-lg text-label-lg font-bold shadow-md active:scale-95 transition-transform">Sí, anotar en libreta</button>
+                <button onclick="closeFiaoModal()" class="w-full py-3 rounded-2xl bg-surface-container text-on-surface font-label-lg text-label-lg font-bold active:scale-95 transition-transform">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Calculadora de Vuelto / Cambio en Tiempo Real -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">calculate</span>
+        Calculadora de Cambio (Vuelto)
+      </span>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-full font-bold">
+        Tasa: 36.50 Bs
+      </span>
+</div>
+<!-- Input Tactil de Monto Recibido -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
+<span>Monto entregado por el cliente</span>
+<span class="text-primary font-bold">Billetes rápidos</span>
+</div>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-headline-md text-headline-md text-outline font-bold">$</span>
+<input class="w-full bg-surface-container-low pl-8 pr-16 py-2.5 rounded-xl font-headline-md text-headline-md font-bold text-on-surface focus:outline-none focus:bg-surface-container-high transition-colors font-body-lg text-body-lg" id="received-amount-input" placeholder="0.00" step="1" type="number" value="10"/>
+<button class="absolute right-3 w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-on-surface" onclick="document.getElementById('received-amount-input').value=''; updateChange();" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Quick Cash Chips -->
+<div class="flex items-center gap-1.5 pt-1 overflow-x-auto pb-1">
+<button class="cash-chip px-3 py-1 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md font-bold hover:bg-surface-container active:scale-95 transition-all" onclick="setCash(6)" type="button">Exacto $6</button>
+<button class="cash-chip px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold active:scale-95 transition-all" onclick="setCash(10)" type="button">$10 USD</button>
+<button class="cash-chip px-3 py-1 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md font-bold hover:bg-surface-container active:scale-95 transition-all" onclick="setCash(20)" type="button">$20 USD</button>
+<button class="cash-chip px-3 py-1 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md font-bold hover:bg-surface-container active:scale-95 transition-all" onclick="setCash(50)" type="button">$50 USD</button>
+</div>
+</div>
+<!-- Caja Destacada de Vuelto -->
+<div class="p-space-sm rounded-xl bg-primary-fixed/25 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">change_circle</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-primary-fixed-variant block font-bold">Vuelto a entregar</span>
+<div class="font-headline-md text-headline-md text-primary font-extrabold leading-tight" id="usd-change-display">$4.00 USD</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant block">O en Bolívares:</span>
+<div class="font-label-lg text-label-lg font-bold text-secondary" id="bs-change-display">146.00 Bs</div>
+</div>
+</div>
+</div>
+<!-- Hardware: Impresora Térmica Bluetooth -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">bluetooth_connected</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Mini Thermal POS-58</span>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse flex-shrink-0"></span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Papel 58mm · 82% Batería</span>
+</div>
+</div>
+<!-- Toggle Autoprint -->
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-container peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-primary after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-low px-3 py-1.5 rounded-lg">
+<span class="font-label-sm text-label-sm">Imprimir ticket automáticamente al cobrar</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">ACTIVADO</span>
+</div>
+</div>
+<!-- Vista Previa Ticket Térmico Estético -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Vista Previa de Recibo</span>
+<button class="font-label-sm text-label-sm text-primary font-bold flex items-center gap-0.5 hover:underline" id="toggle-receipt" type="button">
+<span>Compactar</span>
+<span class="material-symbols-outlined text-[14px]">expand_less</span>
+</button>
+</div>
+<!-- Papel Recibo (Estilo Térmico Realista con Dientes de Corte) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-md font-mono text-[11px] leading-tight text-on-surface flex flex-col gap-2 relative overflow-hidden transition-all duration-300" id="receipt-paper">
+<!-- Borde superior decorativo recibo -->
+<div class="text-center flex flex-col items-center border-b border-dashed border-outline-variant/60 pb-2">
+<span class="material-symbols-outlined text-[24px] text-primary">storefront</span>
+<div class="font-bold text-[13px] tracking-wider text-on-surface uppercase">BODEGA SAN ANTONIO</div>
+<div class="text-[10px] text-on-surface-variant">RIF: J-40819284-1 · Kiosquito Cloud</div>
+<div class="text-[10px] text-on-surface-variant">Calle Principal #14, Sector El Valle</div>
+<div class="text-[10px] text-on-surface-variant">Tel: +58 (412) 555-0199</div>
+</div>
+<!-- Metadatos de la Venta -->
+<div class="flex justify-between text-[10px] text-on-surface-variant border-b border-dashed border-outline-variant/60 pb-1.5">
+<div>
+<div>TICKET: #0482</div>
+<div>CAJERO: Marco V.</div>
+</div>
+<div class="text-right">
+<div>FECHA: 24/10/2024</div>
+<div>HORA: 10:42 AM</div>
+</div>
+</div>
+<div>
+<span class="font-bold text-[10px] block">CLIENTE: SRA. ELENA PÉREZ</span>
+<span class="text-[9px] text-on-surface-variant">CONDICIÓN: CONTADO / EFECTIVO USD</span>
+</div>
+<!-- Desglose de Productos -->
+<div class="flex flex-col gap-1 border-b border-dashed border-outline-variant/60 pb-2">
+<div class="flex justify-between font-bold text-[10px] text-on-surface-variant">
+<span>DESCRIPCIÓN / CANT.</span>
+<span>USD</span>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-bold">Queso Blanco Llanero</span>
+<span class="text-[9px] text-on-surface-variant">250g @ $8.00/kg (Balanza BT)</span>
+</div>
+<span class="font-bold">$2.00</span>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-bold">Harina P.A.N. Maíz 1kg</span>
+<span class="text-[9px] text-on-surface-variant">2 pzas x $1.40</span>
+</div>
+<span class="font-bold">$2.80</span>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-bold">Café Fama de América 100g</span>
+<span class="text-[9px] text-on-surface-variant">1 pza</span>
+</div>
+<span class="font-bold">$1.20</span>
+</div>
+</div>
+<!-- Totales y Dual Currency -->
+<div class="flex flex-col gap-1 border-b border-dashed border-outline-variant/60 pb-2">
+<div class="flex justify-between font-bold text-[12px]">
+<span>TOTAL USD:</span>
+<span class="text-[13px]">$6.00</span>
+</div>
+<div class="flex justify-between text-[11px] text-on-surface-variant">
+<span>TOTAL EN BS (36.50):</span>
+<span class="font-bold text-on-surface">219.00 Bs</span>
+</div>
+<div class="flex justify-between text-[10px] text-on-surface-variant pt-1">
+<span>PAGÓ CON (USD):</span>
+<span>$10.00</span>
+</div>
+<div class="flex justify-between text-[11px] font-bold text-primary">
+<span>CAMBIO / VUELTO:</span>
+<span>$4.00 (146.00 Bs)</span>
+</div>
+</div>
+<!-- Código QR de Validación & Mensaje de Despedida -->
+<div class="flex flex-col items-center justify-center gap-1.5 pt-1 text-center">
+<!-- Generación de QR visual SVG liviano -->
+<div class="p-1.5 bg-on-primary rounded-lg shadow-sm">
+<svg class="w-16 h-16 text-on-surface" fill="currentColor" viewbox="0 0 100 100">
+<!-- Patrón QR estilizado -->
+<rect height="30" rx="4" width="30" x="0" y="0"></rect>
+<rect fill="#ffffff" height="18" rx="2" width="18" x="6" y="6"></rect>
+<rect height="10" rx="1" width="10" x="10" y="10"></rect>
+<rect height="30" rx="4" width="30" x="70" y="0"></rect>
+<rect fill="#ffffff" height="18" rx="2" width="18" x="76" y="6"></rect>
+<rect height="10" rx="1" width="10" x="80" y="10"></rect>
+<rect height="30" rx="4" width="30" x="0" y="70"></rect>
+<rect fill="#ffffff" height="18" rx="2" width="18" x="6" y="76"></rect>
+<rect height="10" rx="1" width="10" x="10" y="80"></rect>
+<!-- Módulos de datos -->
+<rect height="8" width="8" x="38" y="6"></rect>
+<rect height="6" width="12" x="50" y="14"></rect>
+<rect height="14" width="6" x="38" y="24"></rect>
+<rect height="8" width="14" x="48" y="32"></rect>
+<rect height="6" width="14" x="16" y="38"></rect>
+<rect height="8" width="18" x="72" y="38"></rect>
+<rect height="10" width="10" x="38" y="52"></rect>
+<rect height="16" width="8" x="54" y="48"></rect>
+<rect height="8" width="14" x="70" y="56"></rect>
+<rect height="18" width="8" x="38" y="72"></rect>
+<rect height="8" width="16" x="52" y="76"></rect>
+<rect height="16" width="16" x="76" y="74"></rect>
+</svg>
+</div>
+<span class="text-[9px] text-on-surface-variant uppercase tracking-wider">Escanea para garantía o consulta fiscal</span>
+<span class="text-[10px] font-bold text-on-surface italic">¡Gracias por apoyar el comercio de tu barrio! ❤️</span>
+</div>
+</div>
+</div>
+<!-- Acciones Secundarias de Salida Digital -->
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm active:scale-[0.98] transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">chat</span>
+<span class="font-label-md text-label-md font-bold truncate">Enviar por WhatsApp</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm active:scale-[0.98] transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary">picture_as_pdf</span>
+<span class="font-label-md text-label-md font-bold truncate">Compartir PDF</span>
+</button>
+</div>
+<!-- Botón Principal Flotante/Anclado de Cierre -->
+<div class="pt-2 sticky bottom-0 z-30 pb-safe">
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl shadow-lg flex items-center justify-between px-space-md active:scale-[0.98] transition-transform" id="confirm-checkout-btn" type="button">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-on-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold">Cobrar e Imprimir Ticket</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-headline-sm font-extrabold">$6.00</span>
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+</button>
+</div>
+</div>
+<script>
+  // Control de Métodos de Pago
+  const methodBtns = document.querySelectorAll('.payment-method-btn');
+  methodBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      methodBtns.forEach(b => {
+        b.className = 'payment-method-btn flex items-center gap-space-xs p-3 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm text-left transition-all active:scale-[0.98]';
+      });
+      btn.className = 'payment-method-btn flex items-center gap-space-xs p-3 rounded-xl bg-primary text-on-primary shadow-sm text-left transition-all active:scale-[0.98]';
+    });
+  });
+
+  // Calculadora de Vuelto
+  const totalDueUsd = 6.00;
+  const exchangeRate = 36.50;
+  const receivedInput = document.getElementById('received-amount-input');
+  const usdChangeDisplay = document.getElementById('usd-change-display');
+  const bsChangeDisplay = document.getElementById('bs-change-display');
+
+  function updateChange() {
+    const val = parseFloat(receivedInput.value) || 0;
+    const diff = val - totalDueUsd;
+    if (diff >= 0) {
+      usdChangeDisplay.textContent = `$${diff.toFixed(2)} USD`;
+      bsChangeDisplay.textContent = `${(diff * exchangeRate).toFixed(2)} Bs`;
+      usdChangeDisplay.className = 'font-headline-md text-headline-md text-primary font-extrabold leading-tight';
+    } else {
+      const remaining = Math.abs(diff);
+      usdChangeDisplay.textContent = `Faltan $${remaining.toFixed(2)}`;
+      bsChangeDisplay.textContent = `Faltan ${(remaining * exchangeRate).toFixed(2)} Bs`;
+      usdChangeDisplay.className = 'font-headline-md text-headline-md text-error font-extrabold leading-tight';
+    }
+  }
+
+  function setCash(amount) {
+    receivedInput.value = amount;
+    updateChange();
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById('toastNotification');
+    const msgEl = document.getElementById('toastMessage');
+    msgEl.textContent = message;
+    toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+    }, 2000);
+  }
+
+  function copyExchangeRate() {
+    navigator.clipboard.writeText("36.50");
+    showToast("Tasa copiada: 36.50 Bs");
+  }
+
+  function showPagoMovilInfo() {
+      const info = document.getElementById('pago-movil-info');
+      info.classList.toggle('hidden');
+  }
+
+  function copyPagoMovil() {
+      const data = "Banco: Mercantil, Telf: 04125550199, RIF: J-408192841";
+      navigator.clipboard.writeText(data);
+      showToast("Datos de Pago Móvil copiados");
+  }
+
+  function openFiaoModal() {
+      const modal = document.getElementById('fiaoModal');
+      const content = document.getElementById('fiaoModalContent');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100');
+      content.classList.remove('scale-95');
+      content.classList.add('scale-100');
+  }
+
+  function closeFiaoModal() {
+      const modal = document.getElementById('fiaoModal');
+      const content = document.getElementById('fiaoModalContent');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.classList.remove('opacity-100');
+      content.classList.add('scale-95');
+      content.classList.remove('scale-100');
+  }
+
+  function confirmFiao() {
+      closeFiaoModal();
+      showToast("Venta anotada en la libreta");
+      setTimeout(() => window.location.reload(), 1500);
+  }
+
+  receivedInput.addEventListener('input', updateChange);
+
+  // Compactar / Expandir Ticket
+  const toggleReceiptBtn = document.getElementById('toggle-receipt');
+  const receiptPaper = document.getElementById('receipt-paper');
+  let isExpanded = true;
+
+  toggleReceiptBtn.addEventListener('click', () => {
+    isExpanded = !isExpanded;
+    if (!isExpanded) {
+      receiptPaper.classList.add('max-h-36', 'overflow-hidden');
+      toggleReceiptBtn.querySelector('span:first-child').textContent = 'Ver completo';
+      toggleReceiptBtn.querySelector('.material-symbols-outlined').textContent = 'expand_more';
+    } else {
+      receiptPaper.classList.remove('max-h-36', 'overflow-hidden');
+      toggleReceiptBtn.querySelector('span:first-child').textContent = 'Compactar';
+      toggleReceiptBtn.querySelector('.material-symbols-outlined').textContent = 'expand_less';
+    }
+  });
+
+  // Efecto de Cobro Exitoso Feedback
+  const checkoutBtn = document.getElementById('confirm-checkout-btn');
+  checkoutBtn.addEventListener('click', () => {
+    const originalContent = checkoutBtn.innerHTML;
+    checkoutBtn.disabled = true;
+    checkoutBtn.innerHTML = `
+      <div class="flex items-center justify-center gap-2 w-full">
+        <span class="material-symbols-outlined animate-spin text-[22px]">progress_activity</span>
+        <span class="font-label-lg text-label-lg font-bold">Imprimiendo y Cerrando Venta...</span>
+      </div>
+    `;
+    setTimeout(() => {
+      checkoutBtn.className = 'w-full h-14 bg-surface-container-high text-primary rounded-xl shadow-lg flex items-center justify-center gap-2 font-headline-sm text-headline-sm font-bold';
+      checkoutBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[24px]">task_alt</span>
+        ¡Cobro Registrado con Éxito!
+      `;
+    }, 1200);
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-bold scale-105"><div class="flex items-center justify-around h-16 px-gutter-mobile max-w-md mx-auto"><a class="flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="vender-pos" href="#"><span class="material-symbols-outlined text-[22px]">point_of_sale</span><span class="font-label-sm text-label-sm leading-tight text-center">POS</span></a><a class="flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="cobros-y-recibos" href="#"><span class="material-symbols-outlined text-[22px]">receipt_long</span><span class="font-label-sm text-label-sm leading-tight text-center">Cobros</span></a><a class="relative flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="clientes-confiables" href="#"><span class="material-symbols-outlined text-[22px]">handshake</span><span class="absolute top-0 right-3 w-2 h-2 rounded-full bg-secondary-container"></span><span class="font-label-sm text-label-sm leading-tight text-center">Fiao</span></a><a class="relative flex flex-col items-center justify-center w-16 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface transition-transform duration-150" data-path="inventario-y-compras" href="#"><span class="material-symbols-outlined text-[22px]">inventory_2</span><span class="absolute top-0 right-3 w-2 h-2 rounded-full bg-error"></span><span class="font-label-sm text-label-sm leading-tight text-center">Stock</span></a></div></nav></body></html>

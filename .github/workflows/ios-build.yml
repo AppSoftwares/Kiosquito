@@ -37,16 +37,12 @@ jobs:
 
       - name: Initialize Capacitor iOS
         run: |
-          rm -rf www
-          mkdir -p www
-          cp index.html www/
-          cp -r "Android, iOS y web/web" www/
           npx cap sync ios
 
       - name: Extract Version Name
         id: get_version
         run: |
-          VERSION=$(grep "versionName =" "Android, iOS y web/app/build.gradle.kts" | sed 's/.*"\(.*\)".*/\1/')
+          VERSION=$(grep "versionName =" "app/build.gradle.kts" | sed 's/.*"\(.*\)".*/\1/')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
@@ -57,7 +53,7 @@ jobs:
 
       - name: Rename APK
         run: |
-          APK_FILE=$(find "Android, iOS y web/app/build/outputs/apk/release" -name "*.apk" | head -n 1)
+          APK_FILE=$(find "app/build/outputs/apk/release" -name "*.apk" | head -n 1)
           cp "$APK_FILE" "KiosquitoApp [${{ env.VERSION }}].apk"
 
       - name: Build Unsigned iOS App

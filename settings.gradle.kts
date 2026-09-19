@@ -26,4 +26,4 @@ rootProject.name = "Kiosquito"
 
 
 include(":app")
-project(":app").projectDir = file("Android, iOS y web/app")
+// project(":app").projectDir = file("app") // Path is now standard "app"
