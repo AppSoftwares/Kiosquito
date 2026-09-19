@@ -1,6 +1,4 @@
 {
   "outputDirectory": "web",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/web/$1" }
-  ]
+  "cleanUrls": true
 }
