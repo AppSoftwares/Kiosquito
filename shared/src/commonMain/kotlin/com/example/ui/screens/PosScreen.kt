@@ -20,8 +20,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
@@ -60,7 +60,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.example.model.CartItem
 import com.example.model.PricingMode
 import com.example.model.UnitType
@@ -70,6 +69,7 @@ import com.example.ui.theme.SecondaryFixed
 import com.example.ui.theme.WarmSurfaceContainer
 import com.example.ui.theme.WarmSurfaceContainerLow
 import com.example.ui.theme.WarmSurfaceContainerLowest
+import com.example.util.format
 import com.example.viewmodel.AppUiState
 import com.example.viewmodel.KiosquitoViewModel
 
@@ -446,7 +446,7 @@ fun PosScreen(
                                 color = MarketEmerald
                             )
                             Text(
-                                text = "$${String.format("%.2f", totalUsd)}",
+                                text = "$${totalUsd.format(2)}",
                                 fontSize = 26.sp,
                                 fontWeight = FontWeight.ExtraBold,
                                 color = MarketEmerald,
@@ -454,7 +454,7 @@ fun PosScreen(
                             )
                         }
                         Text(
-                            text = "${String.format("%.2f", totalBs)} Bs",
+                            text = "${totalBs.format(2)} Bs",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.secondary
@@ -507,13 +507,13 @@ fun PosScreen(
 
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                text = "$${String.format("%.2f", totalUsd)}",
+                                text = "$${totalUsd.format(2)}",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
                                 modifier = Modifier.padding(end = 4.dp)
                             )
                             Icon(
-                                imageVector = Icons.Default.ArrowForward,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                                 contentDescription = null,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -659,15 +659,20 @@ private fun CartProductCard(
                     modifier = Modifier.weight(1f),
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    AsyncImage(
-                        model = item.imageUrl,
-                        contentDescription = item.name,
-                        contentScale = ContentScale.Crop,
+                    Box(
                         modifier = Modifier
                             .size(54.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(WarmSurfaceContainer)
-                    )
+                            .background(WarmSurfaceContainer),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ShoppingCart,
+                            contentDescription = null,
+                            tint = MarketEmerald.copy(alpha = 0.5f),
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
                     Column(modifier = Modifier.weight(1f)) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -691,7 +696,7 @@ private fun CartProductCard(
                             }
                             val unitPrice = if (pricingMode == PricingMode.DETALLE) item.retailPriceUsd else item.wholesalePriceUsd
                             Text(
-                                text = "$${String.format("%.2f", unitPrice)} ${if (item.unitType == UnitType.WEIGHT_KG) "/ kg" else "c/u"}",
+                                text = "$${unitPrice.format(2)} ${if (item.unitType == UnitType.WEIGHT_KG) "/ kg" else "c/u"}",
                                 fontSize = 11.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -870,13 +875,13 @@ private fun CartProductCard(
                 // Price
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
-                        text = "$${String.format("%.2f", itemTotalUsd)}",
+                        text = "$${itemTotalUsd.format(2)}",
                         fontSize = 17.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = MarketEmerald
                     )
                     Text(
-                        text = "${String.format("%.2f", itemTotalBs)} Bs",
+                        text = "${itemTotalBs.format(2)} Bs",
                         fontSize = 12.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurfaceVariant

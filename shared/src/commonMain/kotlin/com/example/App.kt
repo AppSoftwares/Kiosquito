@@ -34,7 +34,6 @@ import com.example.viewmodel.MainTab
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun App(viewModel: KiosquitoViewModel) {
     val state by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -152,4 +151,10 @@ fun App(viewModel: KiosquitoViewModel) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun AppPreview() {
+    App(viewModel = KiosquitoViewModel())
 }

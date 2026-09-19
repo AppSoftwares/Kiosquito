@@ -31,7 +31,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.example.ui.theme.MarketEmerald
 import com.example.ui.theme.SecondaryFixed
 import com.example.ui.theme.WarmSurfaceContainer
@@ -67,15 +66,21 @@ fun KiosquitoTopBar(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    // Logo Image
-                    AsyncImage(
-                        model = "https://lh3.googleusercontent.com/aida-public/AB6AXuDPt0eh_DSpOoETGT6mUCkuh58-PrHlBUupXbuM5t6BcEQgXzJzBX2r-EJFicW6BJXXOrCoa9_DaRo075CEXC_dr7cMqzZT1vV-6DTJZ7eBztG_ccfEade3vg4KofLIk3MxqtaqVL5rJ-kg0g7octyN7wrGuFoV0rVVOg50CZYyVd8yvjKGkIPIm-Qlvavmr6mcDliu3YNhbXFYTs6oL4hmkcLIkaER2WPHnrZRHlMImajLG0k3CNouUg",
-                        contentDescription = "Kiosquito Logo",
+                    // Logo Image Placeholder
+                    Box(
                         modifier = Modifier
                             .size(34.dp)
-                            .clip(RoundedCornerShape(8.dp)),
-                        contentScale = ContentScale.Fit
-                    )
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(WarmSurfaceContainer),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = "Kiosquito Logo",
+                            tint = MarketEmerald.copy(alpha = 0.5f),
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
                     Column {
                         Text(
                             text = "KIOSQUITO",
