@@ -63,7 +63,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
+
 import com.example.model.TrustedCustomer
 import com.example.ui.theme.AlertRed
 import com.example.ui.theme.AlertRedContainer
@@ -423,7 +423,7 @@ fun FiaoScreen(
                             Text("$10", color = MaterialTheme.colorScheme.onSurface, fontSize = 12.sp)
                         }
                         Button(
-                            onClick = { abonoInputAmount = String.format("%.2f", cust.debtUsd) },
+                            onClick = { abonoInputAmount = cust.debtUsd.format(2) },
                             shape = RoundedCornerShape(8.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = SecondaryFixed),
                             modifier = Modifier.weight(1f)
@@ -481,11 +481,11 @@ fun FiaoScreen(
 @Composable
 private fun CustomerCard(
     customer: TrustedCustomer,
-    exchangeRate: java.math.BigDecimal,
+    exchangeRate: Double,
     onRegistrarAbono: () -> Unit,
     onSendWhatsApp: () -> Unit
 ) {
-    val debtBs = customer.debtUsd.multiply(exchangeRate)
+    val debtBs = customer.debtUsd * exchangeRate
     val progress = if (customer.creditLimitUsd.toDouble() > 0) (customer.debtUsd.toDouble() / customer.creditLimitUsd.toDouble()).toFloat().coerceIn(0f, 1f) else 0f
 
     Card(
@@ -510,15 +510,12 @@ private fun CustomerCard(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(modifier = Modifier.size(46.dp)) {
-                        AsyncImage(
-                            model = customer.avatarUrl,
-                            contentDescription = customer.name,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .size(46.dp)
-                                .clip(CircleShape)
-                                .background(WarmSurfaceContainer)
-                        )
+                        Box(
+                            modifier = Modifier.size(46.dp).clip(CircleShape).background(WarmSurfaceContainer),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(imageVector = Icons.Default.ShoppingBag, contentDescription = null, tint = MarketEmerald.copy(alpha = 0.5f))
+                        }
                         Box(
                             modifier = Modifier
                                 .size(12.dp)
@@ -610,14 +607,14 @@ private fun CustomerCard(
                     )
                     Row(verticalAlignment = Alignment.Bottom) {
                         Text(
-                            text = "$${String.format("%.2f", customer.debtUsd)}",
+                            text = "$${customer.debtUsd.format(2)}",
                             fontSize = 18.sp,
                             fontWeight = FontWeight.ExtraBold,
                             color = if (customer.isExceeded) AlertRed else MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "/ ${String.format("%.2f", debtBs)} Bs",
+                            text = "/ ${debtBs.format(2)} Bs",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.secondary
@@ -640,14 +637,14 @@ private fun CustomerCard(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Cupo: $${String.format("%.2f", customer.creditLimitUsd)} max",
+                        text = "Cupo: $${customer.creditLimitUsd.format(2)} max",
                         fontSize = 10.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     val available = (customer.creditLimitUsd - customer.debtUsd).coerceAtLeast(0.0)
                     Text(
-                        text = if (customer.isExceeded) "Excedido por +$${String.format("%.2f", customer.debtUsd - customer.creditLimitUsd)}"
-                        else "Disponible: $${String.format("%.2f", available)}",
+                        text = if (customer.isExceeded) "Excedido por +$${(customer.debtUsd - customer.creditLimitUsd).format(2)}"
+                        else "Disponible: $${available.format(2)}",
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
                         color = if (customer.isExceeded) AlertRed else MarketEmerald

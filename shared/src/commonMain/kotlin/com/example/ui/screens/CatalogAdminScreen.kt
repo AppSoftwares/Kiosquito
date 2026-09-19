@@ -17,10 +17,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Link
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Storefront
@@ -45,21 +46,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.example.model.PublicProduct
 import com.example.ui.theme.AlertRed
 import com.example.ui.theme.AlertRedContainer
 import com.example.ui.theme.MarketEmerald
-import com.example.ui.theme.OnAlertRedContainer
 import com.example.ui.theme.WarmSurfaceContainer
 import com.example.ui.theme.WarmSurfaceContainerLowest
+import com.example.util.format
 import com.example.viewmodel.AppUiState
 import com.example.viewmodel.KiosquitoViewModel
 
@@ -81,7 +80,7 @@ fun CatalogAdminScreen(
 
     val uriHandler = LocalUriHandler.current
     val clipboardManager = LocalClipboardManager.current
-    val catalogLink = "http://192.168.1.100:8080/web/catalog/index.html"
+    val catalogLink = "https://kiosquito-kappa.vercel.app/catalog/"
 
     Column(
         modifier = modifier
@@ -113,7 +112,7 @@ fun CatalogAdminScreen(
                         modifier = Modifier.height(36.dp)
                     ) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Volver",
                             modifier = Modifier.size(16.dp)
                         )
@@ -183,7 +182,6 @@ fun CatalogAdminScreen(
                                 IconButton(
                                     onClick = {
                                         clipboardManager.setText(AnnotatedString(catalogLink))
-                                        // Triggering a toast simulation via existing architecture or local mechanism
                                     },
                                     modifier = Modifier.size(28.dp)
                                 ) {
@@ -226,10 +224,9 @@ fun CatalogAdminScreen(
             // Feature 1: Public Catalog Management List Header
             item {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(top = 6.dp)
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
                         Text(
@@ -366,7 +363,7 @@ fun CatalogAdminScreen(
                             category = categoryInput.ifBlank { "General" },
                             description = descriptionInput,
                             priceUsd = price,
-                            imageUrl = imageUrlInput.ifBlank { "https://lh3.googleusercontent.com/aida-public/AB6AXuCZR0bBDbOzE-PeKm88w4Kg1cTW1zguQDmCmm2Ri-VrXFUCXMtgzgFtbaaeVmz-O6sR2gk4OoVs5msDdIdGPEoh8PXpRcL0klEXBOoLqnSgwOAAYqoFYN0phRHfh55Fc--BcSzH-nwvvmVp-iNVWaRdriJbJAg2Gd9uYVL2cwowheGnPSbN8R3nlhXf-MAXvsRnWMmcr2l2c7xvZMlBN647cRbmS9JP3aFd4CbQXkFROsOAHecsbFEPGA" }
+                            imageUrl = imageUrlInput.ifBlank { "https://via.placeholder.com/300" }
                         )
                         showAddProductModal = false
                     },
@@ -402,15 +399,21 @@ private fun PublicProductRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                model = product.imageUrl,
-                contentDescription = product.name,
-                contentScale = ContentScale.Crop,
+            // Multiplatform image placeholder
+            Box(
                 modifier = Modifier
                     .size(54.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(WarmSurfaceContainer)
-            )
+                    .background(WarmSurfaceContainer),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Image,
+                    contentDescription = null,
+                    tint = MarketEmerald.copy(alpha = 0.5f),
+                    modifier = Modifier.size(24.dp)
+                )
+            }
 
             Column(modifier = Modifier.weight(1f)) {
                 Row(
@@ -443,7 +446,7 @@ private fun PublicProductRow(
                     maxLines = 2
                 )
                 Text(
-                    text = "$${String.format("%.2f", product.priceUsd)} USD",
+                    text = "$${product.priceUsd.format(2)} USD",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.ExtraBold,
                     color = MarketEmerald,

@@ -19,7 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material.icons.filled.ChevronRight
@@ -64,7 +64,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
+
 import com.example.ui.theme.AlertRed
 import com.example.ui.theme.AlertRedContainer
 import com.example.ui.theme.EmeraldFixed
@@ -121,7 +121,7 @@ fun ProfileScreen(
                         modifier = Modifier.height(36.dp)
                     ) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Volver",
                             modifier = Modifier.size(16.dp)
                         )
@@ -156,17 +156,23 @@ fun ProfileScreen(
                         ) {
                             // Avatar with camera action
                             Box(contentAlignment = Alignment.BottomEnd) {
-                                AsyncImage(
-                                    model = "https://lh3.googleusercontent.com/aida-public/AB6AXuAw867L85QpIkuAslsAGIRJZ5xkGpo9zlpFlCm2xdKwFI655Zwr5jW7hFNCWwNw82RSnD4lKng3tfz8nSPdcf7YpeDmaZm4jEb3o53VjRvL11gTRvTJEY_QVKLIyO1fZWlGweeAg905z2frhBoIYMe_mG8BsTnaj59AdkGD3EzFwx9kqwzhwQKXB7fwMQ8cL_5zj9dDCHDw3J2vwg13mkt4BAdbinqos6vL3xrqseG4lBbrsREPaWN3ng",
-                                    contentDescription = "Marco Valderrama",
-                                    contentScale = ContentScale.Crop,
+                                Box(
                                     modifier = Modifier
                                         .size(76.dp)
                                         .clip(CircleShape)
                                         .background(Color.White)
                                         .padding(2.dp)
                                         .clip(CircleShape)
-                                )
+                                        .background(WarmSurfaceContainer),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.ManageAccounts,
+                                        contentDescription = null,
+                                        tint = MarketEmerald.copy(alpha = 0.5f),
+                                        modifier = Modifier.size(40.dp)
+                                    )
+                                }
                                 Box(
                                     modifier = Modifier
                                         .size(24.dp)

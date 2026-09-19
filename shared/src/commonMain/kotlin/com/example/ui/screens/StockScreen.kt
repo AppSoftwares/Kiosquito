@@ -61,7 +61,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
+import com.example.util.format
 import com.example.model.InventoryProduct
 import com.example.model.SupplierInvoice
 import com.example.model.UnitType
@@ -570,15 +570,19 @@ private fun InventoryProductRow(product: InventoryProduct) {
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     Box(modifier = Modifier.size(54.dp)) {
-                        AsyncImage(
-                            model = product.imageUrl,
-                            contentDescription = product.name,
-                            contentScale = ContentScale.Crop,
+                        Box(
                             modifier = Modifier
                                 .size(54.dp)
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(WarmSurfaceContainer)
-                        )
+                                .background(WarmSurfaceContainer),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Inventory2,
+                                contentDescription = null,
+                                tint = MarketEmerald.copy(alpha = 0.5f)
+                            )
+                        }
                         if (product.isPesable) {
                             Box(
                                 modifier = Modifier
@@ -616,13 +620,13 @@ private fun InventoryProductRow(product: InventoryProduct) {
                                 horizontalArrangement = Arrangement.spacedBy(6.dp)
                             ) {
                                 Text(
-                                    text = "$${String.format("%.2f", product.retailPriceUsd)} c/u",
+                                    text = "$${product.retailPriceUsd.format(2)} c/u",
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MarketEmerald
                                 )
                                 Text(
-                                    text = "Costo: $${String.format("%.2f", product.costPriceUsd)}",
+                                    text = "Costo: $${product.costPriceUsd.format(2)}",
                                     fontSize = 10.sp,
                                     color = MaterialTheme.colorScheme.outline
                                 )
@@ -682,7 +686,7 @@ private fun InventoryProductRow(product: InventoryProduct) {
                     }
 
                     val qtyText = if (product.unitType == UnitType.WEIGHT_KG)
-                        "${String.format("%.2f", product.stockQty)} kg"
+                        "${product.stockQty.format(2)} kg"
                     else
                         "${product.stockQty.toInt()} und"
                     Text(
@@ -706,15 +710,15 @@ private fun InventoryProductRow(product: InventoryProduct) {
                 ) {
                     Column {
                         Text("Costo / kg", fontSize = 10.sp, color = MaterialTheme.colorScheme.outline)
-                        Text("$${String.format("%.2f", product.costPriceUsd)}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                        Text("$${product.costPriceUsd.format(2)}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
                     }
                     Column {
                         Text("Detalle / kg", fontSize = 10.sp, color = MarketEmerald)
-                        Text("$${String.format("%.2f", product.retailPriceUsd)}", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = MarketEmerald)
+                        Text("$${product.retailPriceUsd.format(2)}", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = MarketEmerald)
                     }
                     Column {
                         Text("Mayor (+5kg)", fontSize = 10.sp, color = MaterialTheme.colorScheme.secondary)
-                        Text("$${String.format("%.2f", product.wholesalePriceUsd)}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                        Text("$${product.wholesalePriceUsd.format(2)}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -868,7 +872,7 @@ private fun SupplierInvoiceCard(invoice: SupplierInvoice) {
                 Column(horizontalAlignment = Alignment.End) {
                     Text("Saldo Pendiente", fontSize = 10.sp, color = MaterialTheme.colorScheme.outline)
                     Text(
-                        text = "$${String.format("%.2f", invoice.pendingBalanceUsd)} USD",
+                        text = "$${invoice.pendingBalanceUsd.format(2)} USD",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = MaterialTheme.colorScheme.secondary

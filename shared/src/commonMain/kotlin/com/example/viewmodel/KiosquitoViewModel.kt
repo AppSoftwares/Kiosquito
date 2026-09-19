@@ -9,6 +9,7 @@ import com.example.model.PricingMode
 import com.example.model.SupplierInvoice
 import com.example.model.TrustedCustomer
 import com.example.model.UnitType
+import com.example.util.format
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -342,7 +343,7 @@ class KiosquitoViewModel : ViewModel() {
     ): String {
         val state = _uiState.value
         val lineas = cartItems.joinToString("\n") {
-            "${it.quantityUnits}x ${it.name} - $${String.format("%.2f", it.retailPriceUsd)}"
+            "${it.quantityUnits}x ${it.name} - $${it.retailPriceUsd.format(2)}"
         }
         val mensaje = buildString {
             append("🛒 *Nuevo Pedido - ${state.storeName}*\n")
@@ -350,8 +351,8 @@ class KiosquitoViewModel : ViewModel() {
             append("------------------------\n")
             append("$lineas\n")
             append("------------------------\n")
-            append("Subtotal: $${String.format("%.2f", totalUsd)}\n")
-            append("Bs: ${String.format("%.2f", totalBs)} (Tasa ${state.exchangeRateUsdToBs})\n")
+            append("Subtotal: $${totalUsd.format(2)}\n")
+            append("Bs: ${totalBs.format(2)} (Tasa ${state.exchangeRateUsdToBs})\n")
             if (notes.isNotBlank()) append("Notas: $notes\n")
         }
         // Note: URL encoding might need a KMP library or simple replacement if not available in common

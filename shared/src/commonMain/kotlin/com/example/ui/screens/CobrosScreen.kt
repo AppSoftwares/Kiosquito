@@ -1,6 +1,7 @@
 package com.example.ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -42,7 +43,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -74,6 +75,7 @@ import com.example.ui.theme.AlertRed
 import com.example.ui.theme.EmeraldFixed
 import com.example.ui.theme.MarigoldContainer
 import com.example.ui.theme.MarketEmerald
+import com.example.ui.theme.MarketEmeraldContainer
 import com.example.ui.theme.OnSecondaryFixed
 import com.example.ui.theme.SecondaryFixed
 import com.example.ui.theme.SecondaryFixedDim
@@ -327,7 +329,7 @@ fun CobrosScreen(
                         Card(
                             shape = RoundedCornerShape(16.dp),
                             colors = CardDefaults.cardColors(containerColor = MarketEmeraldContainer.copy(alpha = 0.1f)),
-                            border = border(1.dp, MarketEmerald.copy(alpha = 0.2f), RoundedCornerShape(16.dp)),
+                            border = BorderStroke(1.dp, MarketEmerald.copy(alpha = 0.2f)),
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -765,7 +767,7 @@ fun CobrosScreen(
                                 lineHeight = 14.sp
                             )
 
-                            Divider(color = Color(0xFFE2E8F0), thickness = 1.dp)
+                            HorizontalDivider(color = Color(0xFFE2E8F0), thickness = 1.dp)
 
                             // Metadata
                             Row(
@@ -806,7 +808,7 @@ fun CobrosScreen(
                                     modifier = Modifier.fillMaxWidth(),
                                     verticalArrangement = Arrangement.spacedBy(6.dp)
                                 ) {
-                                    Divider(color = Color(0xFFE2E8F0), thickness = 1.dp)
+                                    HorizontalDivider(color = Color(0xFFE2E8F0), thickness = 1.dp)
 
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
@@ -860,7 +862,7 @@ fun CobrosScreen(
                                         }
                                     }
 
-                                    Divider(color = Color(0xFFE2E8F0), thickness = 1.dp)
+                                    HorizontalDivider(color = Color(0xFFE2E8F0), thickness = 1.dp)
 
                                     // Totals
                                     Row(
