@@ -10,7 +10,8 @@
     "@capacitor/ios": "^6.2.2"
   },
   "devDependencies": {
-    "@capacitor/cli": "^6.2.2"
+    "@capacitor/cli": "^6.2.2",
+    "supabase": "^2.117.0"
   },
   "scripts": {
     "dev": "echo 'Iniciando servidor de desarrollo...' && npx http-server .",

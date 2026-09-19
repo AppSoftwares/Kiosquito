@@ -25,5 +25,6 @@ dependencyResolutionManagement {
 rootProject.name = "Kiosquito"
 
 
-include(":app")
+include(":shared", ":androidApp", ":webApp")
+// include(":app")
 // project(":app").projectDir = file("app") // Path is now standard "app"

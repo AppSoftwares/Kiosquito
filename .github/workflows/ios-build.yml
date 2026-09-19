@@ -42,18 +42,18 @@ jobs:
       - name: Extract Version Name
         id: get_version
         run: |
-          VERSION=$(grep "versionName =" "app/build.gradle.kts" | sed 's/.*"\(.*\)".*/\1/')
+          VERSION=$(grep "versionName =" "androidApp/build.gradle.kts" | sed 's/.*"\(.*\)".*/\1/')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build Android APK
         run: |
           chmod +x gradlew
-          ./gradlew :app:assembleRelease
+          ./gradlew :androidApp:assembleRelease
 
       - name: Rename APK
         run: |
-          APK_FILE=$(find "app/build/outputs/apk/release" -name "*.apk" | head -n 1)
+          APK_FILE=$(find "androidApp/build/outputs/apk/release" -name "*.apk" | head -n 1)
           cp "$APK_FILE" "KiosquitoApp [${{ env.VERSION }}].apk"
 
       - name: Build Unsigned iOS App
@@ -66,7 +66,7 @@ jobs:
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGN_ENTITLEMENTS="" \
             clean build
@@ -102,7 +102,7 @@ jobs:
             KiosquitoApp [*.ipa
           body: |
             ## Notas de Lanzamiento - V.${{ env.VERSION }}
-            - Binarios reales generados.
+            - Binarios reales generados con arquitectura unificada KMP.
             - **Instrucción para iOS**: Descarga el archivo .ipa y úsalo con Sideloadly para firmarlo con tu Apple ID gratuito.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
